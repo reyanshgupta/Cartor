@@ -1,16 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterPage"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".RegisterPage">
 
     <TextView
+        android:id="@+id/registertv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/registertv"
-        android:text="Register"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:text="Register"
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
-</LinearLayout>
+    <EditText
+        android:id="@+id/registerfname"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:layout_below="@id/registertv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:hint="First Name"
+        android:outlineProvider="none" />
+
+    <EditText
+        android:id="@+id/registerlname"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:layout_below="@id/registerfname"
+        android:layout_centerHorizontal="true"
+        android:hint="Last Name" />
+
+    <EditText
+        android:id="@+id/registermail"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:layout_below="@id/registerlname"
+        android:layout_centerHorizontal="true"
+        android:hint="E-mail" />
+
+    <EditText
+        android:id="@+id/registerphone"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:layout_below="@id/registermail"
+        android:layout_centerHorizontal="true"
+        android:hint="Phone Number" />
+
+
+</RelativeLayout>
