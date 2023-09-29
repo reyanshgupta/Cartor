@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".weekfrag">
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Week"
             android:fontFamily="@font/helvetica_bold"
             android:layout_centerHorizontal="true"
