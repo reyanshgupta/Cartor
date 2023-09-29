@@ -35,6 +35,7 @@
         android:layout_below="@id/loginusername"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:inputType="textPassword"
         android:background="@drawable/user_input"
         android:padding="10dp"/>
 
