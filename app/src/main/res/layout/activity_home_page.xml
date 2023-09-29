@@ -1,9 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".HomePage">
+    android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/heading"
+        android:layout_marginLeft="10dp"
+        android:text="Cartor"
+        android:textSize="40sp"
+        android:fontFamily="@font/helvetica_bold"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/co2em"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/heading"
+        android:text="total CO2 emission"/>
+
+    <ActionMenuView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/co2em"
+        android:id="@+id/buttonbar"
+        android:layout_marginTop="20dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/co2em"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/todaybutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Today"
+                />
+
+            <Button
+                android:id="@+id/weekbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/todaybutton"
+                android:layout_marginStart="8dp"
+                android:text="Week" />
+
+            <Button
+                android:id="@+id/monthbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/weekbutton"
+                android:layout_marginStart="8dp"
+                android:text="Month" />
+        </RelativeLayout>
+    </ActionMenuView>
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </RelativeLayout>
