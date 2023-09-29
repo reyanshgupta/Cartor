@@ -3,6 +3,18 @@
     <style name="Base.Theme.Cartor" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:fontFamily">@font/helvetica</item>
+    </style>
+    <style name="GrayButtonStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">@color/button_background_color</item>
+        <item name="android:textColor">@color/button_text_color</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:stateListAnimator">@null</item>
     </style>
 
     <style name="Theme.Cartor" parent="Base.Theme.Cartor" />
