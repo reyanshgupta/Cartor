@@ -1,6 +1,10 @@
 {
   "project_info": {
     "project_number": "597908019310",
+<<<<<<< Updated upstream
+=======
+    "firebase_url": "https://cartor-4d2f2-default-rtdb.firebaseio.com",
+>>>>>>> Stashed changes
     "project_id": "cartor-4d2f2",
     "storage_bucket": "cartor-4d2f2.appspot.com"
   },
