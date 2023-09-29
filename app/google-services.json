@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "597908019310",
+    "project_id": "cartor-4d2f2",
+    "storage_bucket": "cartor-4d2f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597908019310:android:3255ac2df68871fd6c6e7f",
+        "android_client_info": {
+          "package_name": "com.example.cartor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiDbaTVsybahAdQSsJ0Cn2QG0JZUSr_JM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

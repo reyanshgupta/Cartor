@@ -18,38 +18,57 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/registerfname"
-        android:layout_width="200dp"
+        android:id="@+id/registerfull"
+        android:layout_width="250dp"
         android:layout_height="45dp"
         android:layout_below="@id/registertv"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:hint="First Name"
-        android:outlineProvider="none" />
+        android:hint="Full Name"
+        android:outlineProvider="none"
+        android:background="@drawable/user_input"
+        android:padding="10dp"/>
 
     <EditText
-        android:id="@+id/registerlname"
-        android:layout_width="200dp"
+        android:id="@+id/registeruser"
+        android:layout_width="250dp"
         android:layout_height="45dp"
-        android:layout_below="@id/registerfname"
+        android:layout_below="@id/registerfull"
         android:layout_centerHorizontal="true"
-        android:hint="Last Name" />
+        android:hint="Username"
+        android:background="@drawable/user_input"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"/>
 
     <EditText
-        android:id="@+id/registermail"
-        android:layout_width="200dp"
+        android:id="@+id/registeremail"
+        android:layout_width="250dp"
         android:layout_height="45dp"
-        android:layout_below="@id/registerlname"
+        android:layout_below="@id/registeruser"
         android:layout_centerHorizontal="true"
-        android:hint="E-mail" />
+        android:hint="E-mail"
+        android:background="@drawable/user_input"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"/>
 
     <EditText
-        android:id="@+id/registerphone"
-        android:layout_width="200dp"
+        android:id="@+id/registerpass"
+        android:layout_width="250dp"
         android:layout_height="45dp"
-        android:layout_below="@id/registermail"
+        android:layout_below="@id/registeremail"
         android:layout_centerHorizontal="true"
-        android:hint="Phone Number" />
+        android:hint="Password"
+        android:background="@drawable/user_input"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"/>
 
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:id="@+id/registerbutton"
+        android:text="Register"
+        android:layout_below="@id/registerpass"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
