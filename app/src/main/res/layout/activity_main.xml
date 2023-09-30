@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/logintv"
         android:text="Login"
+        android:fontFamily="@font/helvetica_bold"
         android:textSize="40sp"
         android:textStyle="bold"
         android:layout_marginTop="150dp"
