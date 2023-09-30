@@ -11,7 +11,13 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +29,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText loginusername, loginpass;
+    EditText loginemail, loginpass;
     Button loginbutton;
     TextView register;
 
@@ -34,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         register = findViewById(R.id.register);
-        loginusername = findViewById(R.id.loginusername);
+        loginemail = findViewById(R.id.loginemail);
         loginpass = findViewById(R.id.loginpass);
         loginbutton = findViewById(R.id.loginbutton);
 
@@ -51,12 +57,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Boolean validateusername(){
-        String user = loginusername.getText().toString();
+        String user = loginemail.getText().toString();
         if(user.isEmpty()){
-            loginusername.setError("Username cannot be empty!");
+            loginemail.setError("Username cannot be empty!");
             return false;
         }else{
-            loginusername.setError(null);
+            loginemail.setError(null);
             return true;
         }
     }
@@ -72,41 +78,38 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void checkUser(){
-        String username = loginusername.getText().toString().trim();
+    public void checkUser() {
+        String email = loginemail.getText().toString().trim();
         String password = loginpass.getText().toString().trim();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
-        Query checkUserDatabase = reference.orderByChild("username").equalTo(username);
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
-        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+        // Sign in the user using the provided email and password
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign-in was successful, check if the email is verified
+                            FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
-                if (snapshot.exists()){
-                    loginusername.setError(null);
-                    String passwordfromDB = snapshot.child(username).child("password").getValue(String.class);
-
-                    if(passwordfromDB.equals(password)){
-                        loginusername.setError(null);
-                        Intent i = new Intent(MainActivity.this, HomePage.class);
-                        startActivity(i);
-                    }else{
-                        loginpass.setError("Invalid Credentials!");
-                        loginpass.requestFocus();
+                            if (currentUser != null && currentUser.isEmailVerified()) {
+                                // Email is verified, allow login
+                                Intent i = new Intent(MainActivity.this, HomePage.class);
+                                startActivity(i);
+                            } else {
+                                // Email is not verified, show a toast message
+                                Toast.makeText(MainActivity.this, "Please verify your email first.", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            // Sign-in failed, show an error message
+                            Toast.makeText(MainActivity.this, "Authentication failed. Check your email and password.", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }else{
-                    loginusername.setError("User does not exist!");
-                    loginusername.requestFocus();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+                });
     }
+
+
 
 
 
