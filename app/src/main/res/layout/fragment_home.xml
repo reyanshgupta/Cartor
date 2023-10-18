@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Base.Theme.Cartor"
+    tools:context=".HomeFragment">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/co2em"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="total CO2 emission"/>
+    <ActionMenuView
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/co2em"
+        android:id="@+id/buttonbar"
+        android:layout_marginTop="20dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/todaybutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Today" />
+            <Button
+                android:id="@+id/weekbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/todaybutton"
+                android:text="Week" />
+            <Button
+                android:id="@+id/monthbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/weekbutton"
+                android:text="Month" />
+        </RelativeLayout>
+        </ActionMenuView>
+<FrameLayout
+    android:id="@+id/home_fragment_container"
+    android:layout_width="wrap_content"
+    android:layout_height="550dp"
+    android:layout_centerInParent="true"
+    android:layout_below="@id/buttonbar"/>
+</RelativeLayout>
