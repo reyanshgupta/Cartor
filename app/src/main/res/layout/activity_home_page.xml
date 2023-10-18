@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -12,62 +11,26 @@
         android:text="Cartor"
         android:textSize="40sp"
         android:fontFamily="@font/helvetica_bold"/>
-    <TextView
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/co2em"
-        android:layout_marginLeft="10dp"
         android:layout_below="@id/heading"
-        android:text="total CO2 emission"/>
+        android:id="@+id/mainFragment"/>
 
-    <ActionMenuView
-        android:layout_width="300dp"
-        android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/co2em"
-        android:id="@+id/buttonbar"
-        android:layout_marginTop="20dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/todaybutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Today" />
-
-            <Button
-                android:id="@+id/weekbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@id/todaybutton"
-                android:text="Week" />
-
-            <Button
-                android:id="@+id/monthbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@id/weekbutton"
-                android:text="Month" />
-        </RelativeLayout>
-    </ActionMenuView>
     <FrameLayout
         android:id="@+id/fragment_container"
-        android:layout_below="@id/buttonbar"
-        android:layout_marginTop="20dp"
+        android:layout_below="@id/mainFragment"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="490dp" />
+        android:layout_height="550dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@id/fragment_container"
+        android:layout_alignParentBottom="true"
         app:menu="@menu/nav_bar" />
 
 </RelativeLayout>
