@@ -1,0 +1,31 @@
+<TextView
+        android:id="@+id/section2Header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Section 2"
+        android:gravity="center"
+        android:layout_alignTop="@id/section1Header"
+        android:layout_toRightOf="@id/section1Header" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/section2Header"
+        android:layout_alignTop="@id/section1Header"
+        android:text="Content for Section 2" />
+    <TextView
+        android:id="@+id/section3Header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Section 3"
+        android:gravity="center"
+        android:background="#5733FF"
+        android:layout_alignTop="@id/section1Header"
+        android:layout_toRightOf="@id/section2Header" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/section3Header"
+        android:layout_alignTop="@id/section1Header"
+        android:text="Content for Section 3" />
