@@ -13,10 +13,7 @@
         android:theme="@style/Theme.Cartor"
         tools:targetApi="31">
         <activity
-            android:name=".Community"
-            android:exported="false" />
-        <activity
-            android:name=".HomePage"
+            android:name=".LandingPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

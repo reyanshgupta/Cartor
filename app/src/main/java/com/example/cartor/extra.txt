@@ -1,47 +1,31 @@
-
-
 <TextView
+        android:id="@+id/section2Header"
         android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/co2em"
-                android:layout_marginLeft="10dp"
-                android:layout_below="@id/heading"
-                android:text="total CO2 emission"/>
+        android:layout_height="wrap_content"
+        android:text="Section 2"
+        android:gravity="center"
+        android:layout_alignTop="@id/section1Header"
+        android:layout_toRightOf="@id/section1Header" />
 
-<ActionMenuView
-        android:layout_width="300dp"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/co2em"
-                android:id="@+id/buttonbar"
-                android:layout_marginTop="20dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/section2Header"
+        android:layout_alignTop="@id/section1Header"
+        android:text="Content for Section 2" />
+    <TextView
+        android:id="@+id/section3Header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Section 3"
+        android:gravity="center"
+        android:background="#5733FF"
+        android:layout_alignTop="@id/section1Header"
+        android:layout_toRightOf="@id/section2Header" />
 
-<RelativeLayout
-            android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-<Button
-                android:id="@+id/todaybutton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="Today" />
-
-<Button
-                android:id="@+id/weekbutton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_toEndOf="@id/todaybutton"
-                        android:text="Week" />
-
-<Button
-                android:id="@+id/monthbutton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_toEndOf="@id/weekbutton"
-                        android:text="Month" />
-
-</RelativeLayout>
-    </ActionMenuView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/section3Header"
+        android:layout_alignTop="@id/section1Header"
+        android:text="Content for Section 3" />
