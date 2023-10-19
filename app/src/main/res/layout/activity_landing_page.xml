@@ -23,14 +23,13 @@
         android:layout_below="@id/mainFragment"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="550dp" />
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/fragment_container"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/nav_bar" />
+        app:menu="@menu/nav_bar"/>
 </RelativeLayout>
