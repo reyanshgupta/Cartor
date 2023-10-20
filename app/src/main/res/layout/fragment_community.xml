@@ -3,12 +3,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CommunityFragment">
+    tools:context=".CommunityFragment"
+    android:background="@drawable/border">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:weightSum="5"
+        android:orientation="vertical"
+        android:layout_marginLeft="15dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:weightSum="4"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:weightSum="1"
+                android:orientation="vertical"
+                android:fontFamily="sans-serif-black">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    android:hint="Name"
+                    android:id="@+id/name"
+                    android:gravity="top|left"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="30sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:hint="username"
+                    android:id="@+id/username"
+                    android:gravity="top|left"
+                    android:fontFamily="sans-serif"/>
+            </LinearLayout>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                />
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/level"
+                android:hint="level 5"
+                android:fontFamily="sans-serif"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/level"
+                android:layout_alignParentRight="true"
+                android:id="@+id/levelnum"
+                android:hint="50/100"
+                android:textAlignment="viewEnd"/>
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_below="@id/levelnum"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:progressDrawable="@drawable/custom_progress_drawable"
+                android:progress="50"/>
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/leaf"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/leaf"
+                android:layout_above="@id/progressBar"/>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
 </FrameLayout>
