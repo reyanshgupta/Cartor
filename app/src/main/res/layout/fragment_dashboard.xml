@@ -1,14 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/parentLayoutDash"
     tools:context=".DashboardFragment">
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/heading"
+        android:layout_marginLeft="10dp"
+        android:text="Dashboard"
+        android:textSize="20sp"
+        android:fontFamily="@font/helvetica_bold"/>
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Compression saves storage!"
+        android:id="@+id/introText"
+        android:layout_below="@id/heading"
+        android:layout_centerHorizontal="true"/>
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/introText"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/LLbuttons"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/KmeansButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="K-means" />
+
+        <Button
+            android:id="@+id/DCTButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DCT" />
+
+        <Button
+            android:id="@+id/HadamardButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hadamard" />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/imageSelect"
+        android:layout_below="@id/LLbuttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@android:drawable/ic_menu_gallery"
+        android:adjustViewBounds="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageSelect"
+        android:layout_centerHorizontal="true"
+        android:text="Select Image"
+        android:id="@+id/imageSelectButton"
+        android:onClick="onSelectImageClick" />
+
+    <ImageView
+        android:id="@+id/imageOutput"
+        android:layout_below="@id/imageSelectButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="true" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/CompressionET"
+        android:layout_below="@id/imageOutput"
+        android:layout_centerHorizontal="true"
+        android:hint="Compression %"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/CarbonOffsetET"
+        android:layout_below="@id/CompressionET"
+        android:layout_centerHorizontal="true"
+        android:hint="CarbonOffset"/>
+</RelativeLayout>
