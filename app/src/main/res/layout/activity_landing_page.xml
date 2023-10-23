@@ -4,17 +4,6 @@
     android:layout_height="match_parent"
     android:theme="@style/Base.Theme.Cartor"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="python"
-        android:id="@+id/py"/>
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/py"
-        android:hint="yeah"
-        android:id="@+id/et"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
