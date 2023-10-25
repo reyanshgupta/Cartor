@@ -47,13 +47,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ScreenTimeCarbonOffset"
+        android:id="@+id/ScreenTimeCarbonEmissions"
+        android:layout_centerHorizontal="true"
         android:layout_below="@id/screenTimeProgressBar"/>
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/lineChart"
         android:layout_width="match_parent"
-        android:layout_below="@id/ScreenTimeCarbonOffset"
+        android:layout_below="@id/ScreenTimeCarbonEmissions"
         android:layout_height="200dp"
         android:layout_weight="1"
         android:background="@color/black" />

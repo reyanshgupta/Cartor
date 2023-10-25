@@ -9,11 +9,13 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
@@ -90,17 +92,26 @@ public class DashboardFragment extends Fragment {
         // Check and request usage stats permission
         if (hasUsageStatsPermission()) {
             // If permission is granted, calculate and display screen time
-            long screenTimeMillis = calculateScreenTime();
-            displayScreenTime(screenTimeMillis);
+            Pair<Long, Long> screenTimePair = calculateScreenTime();
+            displayScreenTime(screenTimePair);
         } else {
             // Request permission from the user
             requestUsageStatsPermission();
         }
-        long screenTimeMillis = calculateScreenTime();
-        long hours = screenTimeMillis / (60 * 60 * 1000); // Convert milliseconds to hours
-        ProgressBar screenTimeProgressBar = view.findViewById(R.id.screenTimeProgressBar);
-        screenTimeProgressBar.setProgress((int) hours);
+        Pair<Long, Long> screenTimePair = calculateScreenTime();
+        long hours = screenTimePair.first;
+        long minutes = screenTimePair.second;
 
+        // Find the ProgressBar
+        ProgressBar screenTimeProgressBar = view.findViewById(R.id.screenTimeProgressBar);
+
+        // Update the ProgressBar with both hours and minutes
+        screenTimeProgressBar.setProgress((int) hours);
+        screenTimeProgressBar.setSecondaryProgress((int) (hours + minutes / 60.0 * 100));
+        long screenTimeMillis = (hours * 60 + minutes) * 60 * 1000; // Convert hours and minutes to milliseconds
+        double carbonEmissionsGrams = calculateCarbonEmissions(screenTimeMillis);
+        TextView screenTimeCarbonEmissions = view.findViewById(R.id.ScreenTimeCarbonEmissions);
+        screenTimeCarbonEmissions.setText(String.format("%.2f g", carbonEmissionsGrams));
         LineChart lineChart = view.findViewById(R.id.lineChart);
 
         // Sample data for the days of the week (monday to sunday)
@@ -161,7 +172,7 @@ public class DashboardFragment extends Fragment {
         Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
         startActivity(intent);
     }
-    private long calculateScreenTime() {
+    private Pair<Long, Long> calculateScreenTime() {
         UsageStatsManager usageStatsManager = (UsageStatsManager) requireContext().getSystemService(Context.USAGE_STATS_SERVICE);
         long currentTime = System.currentTimeMillis();
         long startTime = currentTime - 24 * 60 * 60 * 1000; // 24 hours ago (1 day)
@@ -171,15 +182,39 @@ public class DashboardFragment extends Fragment {
         for (UsageStats stat : stats) {
             totalScreenTimeMillis += stat.getTotalTimeInForeground();
         }
-        return totalScreenTimeMillis;
+
+        // Convert totalScreenTimeMillis to hours and minutes
+        long hours = totalScreenTimeMillis / (60 * 60 * 1000); // Convert milliseconds to hours
+        long minutes = (totalScreenTimeMillis / 60000) % 60; // Calculate the remaining minutes
+
+        return new Pair<>(hours, minutes);
     }
-    private void displayScreenTime(long screenTimeMillis) {
+//    private long calculateScreenTime() {
+//        UsageStatsManager usageStatsManager = (UsageStatsManager) requireContext().getSystemService(Context.USAGE_STATS_SERVICE);
+//        long currentTime = System.currentTimeMillis();
+//        long startTime = currentTime - 24 * 60 * 60 * 1000; // 24 hours ago (1 day)
+//        List<UsageStats> stats = usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, startTime, currentTime);
+//
+//        long totalScreenTimeMillis = 0;
+//        for (UsageStats stat : stats) {
+//            totalScreenTimeMillis += stat.getTotalTimeInForeground();
+//        }
+//        return totalScreenTimeMillis;
+//    }
+    private void displayScreenTime(Pair<Long, Long> screenTime) {
+        long hours = screenTime.first;
+        long minutes = screenTime.second;
+
+        String screenTimeText = hours + "h " + minutes + "m";
+        totalScreenTimeTextView.setText(screenTimeText);
+    }
+    private double calculateCarbonEmissions(long screenTimeMillis) {
+        // Convert screen time from milliseconds to minutes
         long minutes = screenTimeMillis / 60000;
-        long hours = minutes / 60;
-        minutes = minutes % 60;
 
-        String screenTime = hours + "h " + minutes + "m";
-        totalScreenTimeTextView.setText(screenTime);
+        // Calculate carbon emissions (assuming 0.01 kg per minute)
+        double carbonEmissions = 0.01 * minutes;
 
+        return carbonEmissions;
     }
 }
