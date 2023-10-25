@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CommunityFragment"
-    android:background="@drawable/border">
+    tools:context=".CommunityFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="5"
+        android:weightSum="4"
         android:orientation="vertical"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.8"
+            android:layout_weight="1"
             android:weightSum="4"
             android:orientation="horizontal">
             <LinearLayout
@@ -30,35 +30,34 @@
                 android:fontFamily="sans-serif-black">
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
                     android:hint="Name"
                     android:id="@+id/name"
                     android:gravity="top|left"
                     android:fontFamily="sans-serif-black"
-                    android:textSize="30sp"/>
+                    android:textSize="30sp"
+                    android:layout_weight="0.6"/>
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.4"
+                    android:layout_height="wrap_content"
                     android:hint="username"
                     android:id="@+id/username"
-                    android:gravity="top|left"
-                    android:fontFamily="sans-serif"/>
+                    android:gravity="center_vertical|left"
+                    android:fontFamily="sans-serif"
+                    android:layout_weight="0.4"/>
             </LinearLayout>
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginRight="20dp"
                 android:src="@drawable/ic_profile"
-                app:tint="#D3D3D3" />
+                app:tint="#D3D3D3"/>
         </LinearLayout>
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -118,7 +117,6 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <!-- First Row, First Column Content -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -174,6 +172,7 @@
                         android:text="Daily challenges\n completed"
                         android:fontFamily="sans-serif"
                         android:textAlignment="center"
+                        android:id="@+id/challangetext"
                         />
                 </LinearLayout>
             </LinearLayout>
@@ -259,7 +258,131 @@
                     android:gravity="center"
                     android:fontFamily="sans-serif"/>
             </LinearLayout>
+
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/creditlayout"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/credittext"
+                    android:text="Cartor credits"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="20sp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/carboncredits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="3540"
+                    android:textSize="30sp"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false"
+            android:layout_marginTop="20dp"
+            android:weightSum="2"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="432"
+                        android:fontFamily="sans-serif-black"
+                        android:layout_gravity="center"
+                        android:textSize="20sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Trees Planted"
+                        android:fontFamily="sans-serif"
+                        android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1280 Kg"
+                        android:fontFamily="sans-serif-black"
+                        android:layout_gravity="center"
+                        android:textSize="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CO2 emitted"
+                        android:fontFamily="sans-serif"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_weight="2"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Leaderboard"
+            android:fontFamily="sans-serif-black"
+            android:textSize="20sp"
+            android:layout_marginLeft="20dp"/>
+
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/leaderboardlist"/>
+    </LinearLayout>
 
     </LinearLayout>
 
