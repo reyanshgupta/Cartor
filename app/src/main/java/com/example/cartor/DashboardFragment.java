@@ -26,6 +26,13 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,6 +104,7 @@ public class DashboardFragment extends Fragment {
         } else {
             // Request permission from the user
             requestUsageStatsPermission();
+            fetchCartorCreditsFromFirebase(view);
         }
         Pair<Long, Long> screenTimePair = calculateScreenTime();
         long hours = screenTimePair.first;
@@ -160,7 +168,40 @@ public class DashboardFragment extends Fragment {
         lineChart.getLegend().setEnabled(false);
         lineChart.invalidate();
 
+        TextView cartorCreditsTextView = view.findViewById(R.id.CartorCreditsDash);
         return view;
+    }
+
+    private void fetchCartorCreditsFromFirebase(View view) {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference usersRef = database.getReference("users");
+
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+
+            usersRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        Integer cartorCredits = dataSnapshot.child("Cartor Credits").getValue(Integer.class);
+
+                        if (cartorCredits != null) {
+                            TextView cartorCreditsTextView = view.findViewById(R.id.CartorCreditsDash);
+                            cartorCreditsTextView.setText("Cartor Credits: " + cartorCredits);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle errors, if any
+                }
+            });
+        } else {
+            // Handle the case where no user is currently logged in
+        }
     }
 
     private boolean hasUsageStatsPermission() {
@@ -189,18 +230,6 @@ public class DashboardFragment extends Fragment {
 
         return new Pair<>(hours, minutes);
     }
-//    private long calculateScreenTime() {
-//        UsageStatsManager usageStatsManager = (UsageStatsManager) requireContext().getSystemService(Context.USAGE_STATS_SERVICE);
-//        long currentTime = System.currentTimeMillis();
-//        long startTime = currentTime - 24 * 60 * 60 * 1000; // 24 hours ago (1 day)
-//        List<UsageStats> stats = usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, startTime, currentTime);
-//
-//        long totalScreenTimeMillis = 0;
-//        for (UsageStats stat : stats) {
-//            totalScreenTimeMillis += stat.getTotalTimeInForeground();
-//        }
-//        return totalScreenTimeMillis;
-//    }
     private void displayScreenTime(Pair<Long, Long> screenTime) {
         long hours = screenTime.first;
         long minutes = screenTime.second;
@@ -217,4 +246,5 @@ public class DashboardFragment extends Fragment {
 
         return carbonEmissions;
     }
+
 }
