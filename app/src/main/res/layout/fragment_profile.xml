@@ -12,36 +12,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:backgroundTint="#D3D3D3"
         android:orientation="horizontal"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
+        android:padding="10dp">
 
         <!-- User Info -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:orientation="vertical"
-            android:fontFamily="sans-serif-black">
+            android:fontFamily="sans-serif-black"
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/profileName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/name"
-                android:hint="Name"
-                android:gravity="top|left"
+                android:layout_weight="0.6"
                 android:fontFamily="sans-serif-black"
-                android:textSize="30sp"
-                android:layout_weight="0.6" />
+                android:gravity="top|left"
+                android:hint="Name"
+                android:textSize="30sp" />
 
             <TextView
+                android:id="@+id/profileUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/username"
-                android:hint="Username"
-                android:gravity="center_vertical|left"
+                android:layout_weight="0.4"
                 android:fontFamily="sans-serif"
-                android:layout_weight="0.4" />
+                android:gravity="center_vertical|left"
+                android:hint="Username" />
 
         </LinearLayout>
 
@@ -50,25 +51,184 @@
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_profile"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_profile" />
+
     </LinearLayout>
 
-    <!-- Carbon Emissions Progress Bar -->
-    <ProgressBar
-        android:id="@+id/carbonProgressBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="?android:attr/progressBarStyleHorizontal" />
 
-    <!-- Cartor Credits -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cartorCredits"
-        android:text="Cartor Credits: X"
+        android:layout_marginTop="20dp"
         android:padding="10dp"
-        android:gravity="center"
-        android:textSize="20sp" />
+        android:gravity="center_horizontal"
+        android:background="@drawable/border"
+        android:backgroundTint="#D3D3D3"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/CartorCreditsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/helvetica_bold"
+                android:text="Cartor Credits:"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/CartorCreditsDash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/helvetica_bold"
+                android:text=" - "
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reducedcarbon"
+                android:text="78Kg"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif-black"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total carbon\n reduced"
+                android:fontFamily="sans-serif"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/CO2eProgBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:background="@drawable/circular_shape"
+            android:indeterminate="false"
+            android:max="24"
+            android:progress="2"
+            android:progressDrawable="@drawable/circular_progress_bar" />
+    </LinearLayout>
+
+
+    <!-- Carbon Emissions Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/border"
+        android:backgroundTint="#D3D3D3"
+        android:layout_marginTop="20dp"
+        android:padding="10dp">
+
+        <!-- Mails -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_mail"
+                android:contentDescription="Mail Icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mails"
+                android:textSize="18sp"
+                android:layout_marginStart="16dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="250 g CO2e"
+                android:textSize="18sp"
+                android:gravity="end" />
+        </LinearLayout>
+
+        <!-- Social Media -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_social_media"
+                android:contentDescription="Social Media Icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Social Media"
+                android:textSize="18sp"
+                android:layout_marginStart="16dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="120 g CO2e"
+                android:textSize="18sp"
+                android:gravity="end" />
+        </LinearLayout>
+
+        <!-- Calls -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_phone"
+                android:contentDescription="Calls Icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calls"
+                android:textSize="18sp"
+                android:layout_marginStart="16dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="50 g CO2e"
+                android:textSize="18sp"
+                android:gravity="end" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Existing XML content below this line -->
+
 
 </LinearLayout>

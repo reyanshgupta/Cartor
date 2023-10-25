@@ -1,0 +1,152 @@
+Index: app/src/main/res/layout/fragment_profile.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:padding=\"10dp\"\r\n    android:background=\"@color/white\"\r\n    android:orientation=\"vertical\">\r\n\r\n    <!-- Profile Header -->\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\"\r\n        android:layout_marginLeft=\"15dp\"\r\n        android:layout_marginRight=\"15dp\">\r\n\r\n        <!-- User Info -->\r\n        <LinearLayout\r\n            android:layout_width=\"0dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_weight=\"3\"\r\n            android:orientation=\"vertical\"\r\n            android:fontFamily=\"sans-serif-black\">\r\n\r\n            <TextView\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:id=\"@+id/name\"\r\n                android:hint=\"Name\"\r\n                android:gravity=\"top|left\"\r\n                android:fontFamily=\"sans-serif-black\"\r\n                android:textSize=\"30sp\"\r\n                android:layout_weight=\"0.6\" />\r\n\r\n            <TextView\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:id=\"@+id/username\"\r\n                android:hint=\"Username\"\r\n                android:gravity=\"center_vertical|left\"\r\n                android:fontFamily=\"sans-serif\"\r\n                android:layout_weight=\"0.4\" />\r\n\r\n        </LinearLayout>\r\n\r\n        <!-- User Avatar -->\r\n        <ImageView\r\n            android:layout_width=\"0dp\"\r\n            android:layout_height=\"100dp\"\r\n            android:layout_weight=\"1\"\r\n            android:src=\"@drawable/ic_profile\"\r\n            android:scaleType=\"fitCenter\" />\r\n    </LinearLayout>\r\n\r\n    <!-- Carbon Emissions Progress Bar -->\r\n    <ProgressBar\r\n        android:id=\"@+id/carbonProgressBar\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        style=\"?android:attr/progressBarStyleHorizontal\" />\r\n\r\n    <!-- Cartor Credits -->\r\n    <TextView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:id=\"@+id/cartorCredits\"\r\n        android:text=\"Cartor Credits: X\"\r\n        android:padding=\"10dp\"\r\n        android:gravity=\"center\"\r\n        android:textSize=\"20sp\" />\r\n\r\n</LinearLayout>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_profile.xml b/app/src/main/res/layout/fragment_profile.xml
+--- a/app/src/main/res/layout/fragment_profile.xml	(revision 25371d9c596c11a5472b4dad7fa13a9f65d312b7)
++++ b/app/src/main/res/layout/fragment_profile.xml	(date 1698269469757)
+@@ -27,7 +27,7 @@
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:id="@+id/name"
++                android:id="@+id/profileName"
+                 android:hint="Name"
+                 android:gravity="top|left"
+                 android:fontFamily="sans-serif-black"
+@@ -37,7 +37,7 @@
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:id="@+id/username"
++                android:id="@+id/profileUsername"
+                 android:hint="Username"
+                 android:gravity="center_vertical|left"
+                 android:fontFamily="sans-serif"
+@@ -60,15 +60,24 @@
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         style="?android:attr/progressBarStyleHorizontal" />
+-
+-    <!-- Cartor Credits -->
+-    <TextView
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:id="@+id/cartorCredits"
+-        android:text="Cartor Credits: X"
+-        android:padding="10dp"
+-        android:gravity="center"
+-        android:textSize="20sp" />
++    <LinearLayout
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal">
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:id="@+id/CartorCreditsText"
++            android:layout_marginTop="20dp"
++            android:fontFamily="@font/helvetica_bold"
++            android:text="Cartor Credits:"/>
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:id="@+id/CartorCreditsDash"
++            android:gravity="clip_horizontal"
++            android:layout_marginStart="8dp"
++            />
++    </LinearLayout>
+ 
+ </LinearLayout>
+Index: app/src/main/java/com/example/cartor/ProfileFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.cartor;\r\n\r\nimport android.media.browse.MediaBrowser;\r\nimport android.os.Bundle;\r\n\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n/**\r\n * A simple {@link Fragment} subclass.\r\n * Use the {@link ProfileFragment#newInstance} factory method to\r\n * create an instance of this fragment.\r\n */\r\npublic class ProfileFragment extends Fragment {\r\n\r\n    // TODO: Rename parameter arguments, choose names that match\r\n    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER\r\n    private static final String ARG_PARAM1 = \"param1\";\r\n    private static final String ARG_PARAM2 = \"param2\";\r\n\r\n    // TODO: Rename and change types of parameters\r\n    private String mParam1;\r\n    private String mParam2;\r\n\r\n    public ProfileFragment() {\r\n        // Required empty public constructor\r\n    }\r\n\r\n    /**\r\n     * Use this factory method to create a new instance of\r\n     * this fragment using the provided parameters.\r\n     *\r\n     * @param param1 Parameter 1.\r\n     * @param param2 Parameter 2.\r\n     * @return A new instance of fragment ProfileFragment.\r\n     */\r\n    // TODO: Rename and change types and number of parameters\r\n    public static ProfileFragment newInstance(String param1, String param2) {\r\n        ProfileFragment fragment = new ProfileFragment();\r\n        Bundle args = new Bundle();\r\n        args.putString(ARG_PARAM1, param1);\r\n        args.putString(ARG_PARAM2, param2);\r\n        fragment.setArguments(args);\r\n        return fragment;\r\n    }\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        if (getArguments() != null) {\r\n            mParam1 = getArguments().getString(ARG_PARAM1);\r\n            mParam2 = getArguments().getString(ARG_PARAM2);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        // Inflate the layout for this fragment\r\n        return inflater.inflate(R.layout.fragment_profile, container, false);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/cartor/ProfileFragment.java b/app/src/main/java/com/example/cartor/ProfileFragment.java
+--- a/app/src/main/java/com/example/cartor/ProfileFragment.java	(revision 25371d9c596c11a5472b4dad7fa13a9f65d312b7)
++++ b/app/src/main/java/com/example/cartor/ProfileFragment.java	(date 1698269439242)
+@@ -1,18 +1,21 @@
+ package com.example.cartor;
+ 
+-import android.media.browse.MediaBrowser;
+ import android.os.Bundle;
+-
+-import androidx.fragment.app.Fragment;
+-import androidx.recyclerview.widget.LinearLayoutManager;
+-import androidx.recyclerview.widget.RecyclerView;
+-
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
++import android.widget.TextView;
+ 
+-import java.util.ArrayList;
+-import java.util.List;
++import androidx.annotation.NonNull;
++import androidx.fragment.app.Fragment;
++
++import com.google.firebase.auth.FirebaseAuth;
++import com.google.firebase.auth.FirebaseUser;
++import com.google.firebase.database.DataSnapshot;
++import com.google.firebase.database.DatabaseError;
++import com.google.firebase.database.DatabaseReference;
++import com.google.firebase.database.FirebaseDatabase;
++import com.google.firebase.database.ValueEventListener;
+ 
+ /**
+  * A simple {@link Fragment} subclass.
+@@ -25,6 +28,7 @@
+     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+     private static final String ARG_PARAM1 = "param1";
+     private static final String ARG_PARAM2 = "param2";
++    private DatabaseReference usersRef;
+ 
+     // TODO: Rename and change types of parameters
+     private String mParam1;
+@@ -65,6 +69,37 @@
+     public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                              Bundle savedInstanceState) {
+         // Inflate the layout for this fragment
+-        return inflater.inflate(R.layout.fragment_profile, container, false);
++        View view = inflater.inflate(R.layout.fragment_profile, container, false);
++
++        TextView profileUsername = view.findViewById(R.id.profileUsername);
++        TextView profileName = view.findViewById(R.id.profileName);
++        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
++        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
++        FirebaseDatabase database = FirebaseDatabase.getInstance();
++        usersRef = database.getReference("users");
++        if (currentUser != null) {
++            String uid = currentUser.getUid();
++            DatabaseReference userNode = usersRef.child(uid);
++            userNode.addValueEventListener(new ValueEventListener() {
++                @Override
++                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
++                    if (dataSnapshot.exists()) {
++                        String username = dataSnapshot.child("username").getValue(String.class);
++                        String name = dataSnapshot.child("name").getValue(String.class);
++
++                        // Set the retrieved data to the TextViews
++                        profileUsername.setText(username);
++                        profileName.setText(name);
++                    }
++                }
++
++                @Override
++                public void onCancelled(@NonNull DatabaseError databaseError) {
++                    // Handle any errors here
++                }
++            });
++        }
++
++        return view;
+     }
+-}
+\ No newline at end of file
++}
