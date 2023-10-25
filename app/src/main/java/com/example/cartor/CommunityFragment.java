@@ -28,7 +28,9 @@ import com.google.firebase.database.ValueEventListener;
  */
 public class CommunityFragment extends Fragment {
 
-    private TextView username, name;
+    private TextView username, name, carboncredits, treesplanted, level, levelnum, remainingpoints, carbonemitted;
+    private ProgressBar progressBar;
+
     private DatabaseReference usersRef;
 
     private int progressStatus = 0;
@@ -88,6 +90,14 @@ public class CommunityFragment extends Fragment {
 
         username = view.findViewById(R.id.username);
         name = view.findViewById(R.id.name);
+        carboncredits = view.findViewById(R.id.carboncredits);
+        treesplanted = view.findViewById(R.id.treesplanted);
+        level = view.findViewById(R.id.level);
+        levelnum = view.findViewById(R.id.levelnum);
+        remainingpoints = view.findViewById(R.id.remainingpoints);
+        progressBar = view.findViewById(R.id.progressBar);
+        carbonemitted = view.findViewById(R.id.carbonemitted);
+
 
         if(currentUser != null){
             String uid = currentUser.getUid();
@@ -101,7 +111,37 @@ public class CommunityFragment extends Fragment {
 
                         String Name = snapshot.child("name").getValue(String.class);
                         name.setText(Name);
+
+                        Integer credits = snapshot.child("credits").getValue(Integer.class);
+                        carboncredits.setText(String.valueOf(credits));
+
+                        Integer treeplanted = snapshot.child("treeplanted").getValue(Integer.class);
+                        treesplanted.setText(String.valueOf(treeplanted));
+
+                        Integer points = snapshot.child("points").getValue(Integer.class);
+                        setProgress(points);
+
+                        Integer CarbonEmitted = snapshot.child("carbonemitted").getValue(Integer.class);
+                        carbonemitted.setText(CarbonEmitted + " Kg");
+
                     }
+                }
+
+                private void setProgress(Integer points) {
+                    int userlevel = (points/100)+1;
+                    int progress = points % 100;
+
+                    if (userlevel >= 1 && userlevel <= 10) {
+                        progressBar.setMax(100);
+                        progressBar.setProgress(progress);
+                    } else {
+                        progressBar.setMax(100);
+                        progressBar.setProgress(100);
+                    }
+
+                    level.setText("Level: " + userlevel);
+                    levelnum.setText(progress + "/100");
+                    remainingpoints.setText("Achieve " + (100-progress)+" more points for next level");
                 }
 
                 @Override
@@ -110,41 +150,6 @@ public class CommunityFragment extends Fragment {
                 }
             });
         }
-
-        //sample code for working progress bar with leaf following progress
-
-//        ProgressBar progressBar = view.findViewById(R.id.progressBar);
-//        ImageView leaf = view.findViewById(R.id.leaf);
-//
-//        // Start a thread to update the progress bar
-//        new Thread(new Runnable() {
-//            public void run() {
-//                while (progressStatus < 100) {
-//                    progressStatus += 1;
-//
-//                    // Update the progress bar and image position on the main thread
-//                    handler.post(new Runnable() {
-//                        public void run() {
-//                            progressBar.setProgress(progressStatus);
-//
-//                            // Calculate the new position of the image based on the progress
-//                            int imageX = (int) (((float) progressStatus / 100) * progressBar.getWidth());
-//                            leaf.setX(imageX - 40);
-//
-//                            // You can adjust the Y position if needed
-//                            // imageView.setY(newY);
-//                        }
-//                    });
-//
-//                    try {
-//                        // Simulate a time-consuming task
-//                        Thread.sleep(100);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }).start();
 
         return view;
     }
