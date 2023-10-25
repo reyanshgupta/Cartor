@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,7 +51,6 @@ public class LandingPage extends AppCompatActivity {
         if (savedInstanceState == null) {
             replaceFragment(new HomeFragment());
         }
-
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

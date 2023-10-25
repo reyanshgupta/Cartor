@@ -1,25 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Base.Theme.Cartor" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:fontFamily">@font/helvetica</item>
-<!--        <item name="bottomNavigationStyle">@style/CustomBottomNavigationView</item>-->
+        <item name="android:windowBackground">@android:color/white</item> <!-- Set overall app background to white -->
+        <item name="colorAccent">#000000</item> <!-- Set UI elements to have a black background -->
+        <item name="android:colorBackground">@android:color/white</item> <!-- Set background color to white -->
+        <item name="android:colorPrimary">@android:color/white</item> <!-- Set primary color to white -->
     </style>
-
-    <style name="GrayButtonStyle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingStart">16dp</item>
-        <item name="android:paddingEnd">16dp</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:background">@color/button_background_color</item>
-        <item name="android:textColor">@color/button_text_color</item>
-        <item name="android:elevation">4dp</item>
-        <item name="android:stateListAnimator">@null</item>
-    </style>
-
-    <style name="CustomBottomNavigationView" parent="Widget.Design.BottomNavigationView">
-        <item name="android:minHeight">32dp</item>
-        <item name="android:maxHeight">32dp</item>
-    </style>
-
     <style name="Theme.Cartor" parent="Base.Theme.Cartor" />
 </resources>
