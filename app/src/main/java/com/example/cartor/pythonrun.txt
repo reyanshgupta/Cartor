@@ -1,8 +1,0 @@
-if (! Python.isStarted()) {
-            Python.start(new AndroidPlatform(this));
-        }
-EditText outputEditText = findViewById(R.id.et);
-Python pyy = Python.getInstance();
-PyObject module = pyy.getModule("test");
-PyObject object = module.callAttr("main");
-outputEditText.setText(object.toString());
