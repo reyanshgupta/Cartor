@@ -1,29 +1,31 @@
 package com.example.cartor;
+
 import android.app.AppOpsManager;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.ProgressBar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -83,6 +85,7 @@ public class DashboardFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         totalScreenTimeTextView = view.findViewById(R.id.totalScreenTime);
+        Typeface customTypeface = ResourcesCompat.getFont(requireContext(), R.font.helvetica);
 
         // Check and request usage stats permission
         if (hasUsageStatsPermission()) {
@@ -93,6 +96,59 @@ public class DashboardFragment extends Fragment {
             // Request permission from the user
             requestUsageStatsPermission();
         }
+        long screenTimeMillis = calculateScreenTime();
+        long hours = screenTimeMillis / (60 * 60 * 1000); // Convert milliseconds to hours
+        ProgressBar screenTimeProgressBar = view.findViewById(R.id.screenTimeProgressBar);
+        screenTimeProgressBar.setProgress((int) hours);
+
+        LineChart lineChart = view.findViewById(R.id.lineChart);
+
+        // Sample data for the days of the week (monday to sunday)
+        List<String> daysOfWeek = new ArrayList<>();
+        daysOfWeek.add("Mon");
+        daysOfWeek.add("Tue");
+        daysOfWeek.add("Wed");
+        daysOfWeek.add("Thu");
+        daysOfWeek.add("Fri");
+        daysOfWeek.add("Sat");
+        daysOfWeek.add("Sun");
+
+        // Sample data for carbon emissions
+        List<Entry> carbonEmissions = new ArrayList<>();
+        carbonEmissions.add(new Entry(0, 100));  // Monday
+        carbonEmissions.add(new Entry(1, 150));  // Tuesday
+        carbonEmissions.add(new Entry(2, 200));  // Wednesday
+        carbonEmissions.add(new Entry(3, 175));  // Thursday
+        carbonEmissions.add(new Entry(4, 120));  // Friday
+        carbonEmissions.add(new Entry(5, 250));  // Saturday
+        carbonEmissions.add(new Entry(6, 90));   // Sunday
+
+        // Create a LineDataSet with the carbon emissions data
+        LineDataSet dataSet = new LineDataSet(carbonEmissions, "Carbon Emissions");
+        dataSet.setColor(Color.WHITE);
+        dataSet.setDrawCircles(false);
+
+        // Set the X-axis labels
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(daysOfWeek));
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setTypeface(customTypeface); // Set the custom font
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setTextColor(Color.WHITE);
+        xAxis.setAxisLineColor(Color.WHITE);
+
+        // Set the Y-axis labels
+        YAxis yAxisLeft = lineChart.getAxisLeft();
+        yAxisLeft.setTypeface(customTypeface); // Set the custom font
+        yAxisLeft.setTextColor(Color.WHITE);
+        yAxisLeft.setAxisLineColor(Color.WHITE);
+
+        // Customize the appearance of the chart
+        lineChart.setData(new LineData(dataSet));
+        lineChart.getDescription().setEnabled(false);
+        lineChart.getLegend().setEnabled(false);
+        lineChart.invalidate();
+
         return view;
     }
 
@@ -124,5 +180,6 @@ public class DashboardFragment extends Fragment {
 
         String screenTime = hours + "h " + minutes + "m";
         totalScreenTimeTextView.setText(screenTime);
+
     }
 }

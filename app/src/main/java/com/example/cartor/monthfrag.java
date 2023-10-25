@@ -1,12 +1,25 @@
 package com.example.cartor;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.Fragment;
+
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +72,64 @@ public class monthfrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_monthfrag, container, false);
+        View view = inflater.inflate(R.layout.fragment_dayfrag, container, false);
+        Typeface customTypeface = ResourcesCompat.getFont(requireContext(), R.font.helvetica);
+        LineChart lineChart = view.findViewById(R.id.dayLineChart);
+
+        // Use the months of the year as X-axis labels
+        List<String> monthsOfYear = new ArrayList<>();
+        monthsOfYear.add("Jan");
+        monthsOfYear.add("Feb");
+        monthsOfYear.add("Mar");
+        monthsOfYear.add("Apr");
+        monthsOfYear.add("May");
+        monthsOfYear.add("Jun");
+        monthsOfYear.add("Jul");
+        monthsOfYear.add("Aug");
+        monthsOfYear.add("Sep");
+        monthsOfYear.add("Oct");
+        monthsOfYear.add("Nov");
+        monthsOfYear.add("Dec");
+
+        // Use the carbon emissions data for each month
+        List<Entry> carbonEmissions = new ArrayList<>();
+        carbonEmissions.add(new Entry(0, 1000));   // January
+        carbonEmissions.add(new Entry(1, 1200));   // February
+        carbonEmissions.add(new Entry(2, 900));    // March
+        carbonEmissions.add(new Entry(3, 1100));   // April
+        carbonEmissions.add(new Entry(4, 800));    // May
+        carbonEmissions.add(new Entry(5, 1500));   // June
+        carbonEmissions.add(new Entry(6, 1400));   // July
+        carbonEmissions.add(new Entry(7, 1600));   // August
+        carbonEmissions.add(new Entry(8, 1100));   // September
+        carbonEmissions.add(new Entry(9, 900));    // October
+        carbonEmissions.add(new Entry(10, 800));   // November
+        carbonEmissions.add(new Entry(11, 950));   // December
+        // Create a LineDataSet with the carbon emissions data
+        LineDataSet dataSet = new LineDataSet(carbonEmissions, "Carbon Emissions");
+        dataSet.setColor(Color.WHITE);
+        dataSet.setDrawCircles(false);
+
+        // Set the X-axis labels to months of the year
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(monthsOfYear));
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setTypeface(customTypeface); // Set the custom font
+        xAxis.setTextColor(Color.WHITE);
+        xAxis.setAxisLineColor(Color.WHITE);
+
+        // Set the Y-axis labels
+        YAxis yAxisLeft = lineChart.getAxisLeft();
+        yAxisLeft.setTypeface(customTypeface); // Set the custom font
+        yAxisLeft.setTextColor(Color.WHITE);
+        yAxisLeft.setAxisLineColor(Color.WHITE);
+
+        // Customize the appearance of the chart
+        lineChart.setData(new LineData(dataSet));
+        lineChart.getDescription().setEnabled(false);
+        lineChart.getLegend().setEnabled(false);
+        lineChart.invalidate();
+
+        return view;
     }
 }

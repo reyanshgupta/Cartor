@@ -6,6 +6,7 @@
     android:id="@+id/parentLayoutDash"
     android:padding="10dp"
     tools:context=".DashboardFragment">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,11 +25,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/totalScreenTime"
+        android:layout_centerHorizontal="true"
         android:layout_below="@id/screentimeTV"/>
+
+    <ProgressBar
+        android:id="@+id/screenTimeProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/totalScreenTime"
+        android:background="@drawable/circular_shape"
+        android:indeterminate="false"
+        android:layout_centerHorizontal="true"
+        android:progressDrawable="@drawable/circular_progress_bar"
+        android:textAlignment="center"
+        android:max="24"
+        android:progress="2"
+        android:layout_gravity="center"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ScreenTimeCarbonOffset"
-        android:layout_below="@id/totalScreenTime"/>
+        android:layout_below="@id/screenTimeProgressBar"/>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lineChart"
+        android:layout_width="match_parent"
+        android:layout_below="@id/ScreenTimeCarbonOffset"
+        android:layout_height="200dp"
+        android:layout_weight="1"
+        android:background="@color/black" />
 </RelativeLayout>

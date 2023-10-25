@@ -1,20 +1,25 @@
 package com.example.cartor;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,35 +68,89 @@ public class dayfrag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_dayfrag, container, false);
+        View view = inflater.inflate(R.layout.fragment_dayfrag, container, false);
+        Typeface customTypeface = ResourcesCompat.getFont(requireContext(), R.font.helvetica);
+        LineChart lineChart = view.findViewById(R.id.dayLineChart);
 
-        BarChart histogramChart = rootView.findViewById(R.id.histogramChart);
-        int paddingInDp = 10; // 10dp
-        float scale = getResources().getDisplayMetrics().density;
-        int paddingInPixels = (int) (paddingInDp * scale + 0.5f);
-        histogramChart.setPadding(paddingInPixels, paddingInPixels, paddingInPixels, paddingInPixels);
-        ArrayList<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(0f, 4.5f));
-        entries.add(new BarEntry(1f, 3.2f));
-        entries.add(new BarEntry(2f, 5.0f));
-        // Add more entries as needed
+        // Sample data for time of day (12 am to 6 am)
+        List<String> timeOfDay = new ArrayList<>();
+        timeOfDay.add("12 am");
+        timeOfDay.add("1 am");
+        timeOfDay.add("2 am");
+        timeOfDay.add("3 am");
+        timeOfDay.add("4 am");
+        timeOfDay.add("5 am");
+        timeOfDay.add("6 am");
+        timeOfDay.add("7 am");
+        timeOfDay.add("8 am");
+        timeOfDay.add("9 am");
+        timeOfDay.add("10 am");
+        timeOfDay.add("11 am");
+        timeOfDay.add("12 pm");
+        timeOfDay.add("1 pm");
+        timeOfDay.add("2 pm");
+        timeOfDay.add("3 pm");
+        timeOfDay.add("4 pm");
+        timeOfDay.add("5 pm");
+        timeOfDay.add("6 pm");
+        timeOfDay.add("7 pm");
+        timeOfDay.add("8 pm");
+        timeOfDay.add("9 pm");
+        timeOfDay.add("10 pm");
+        timeOfDay.add("11 pm");
 
-        BarDataSet dataSet = new BarDataSet(entries, "Histogram");
-        dataSet.setColor(Color.BLUE); // Customize the color of the bars
+        // Sample data for carbon emissions
+        List<Entry> carbonEmissions = new ArrayList<>();
+        carbonEmissions.add(new Entry(0, 100));
+        carbonEmissions.add(new Entry(1, 150));
+        carbonEmissions.add(new Entry(2, 200));
+        carbonEmissions.add(new Entry(3, 175));
+        carbonEmissions.add(new Entry(4, 120));
+        carbonEmissions.add(new Entry(5, 250));
+        carbonEmissions.add(new Entry(6, 90));
+        carbonEmissions.add(new Entry(7, 90));
+        carbonEmissions.add(new Entry(8, 134));
+        carbonEmissions.add(new Entry(9, 152));
+        carbonEmissions.add(new Entry(10, 531));
+        carbonEmissions.add(new Entry(11, 90));
+        carbonEmissions.add(new Entry(12, 531));
+        carbonEmissions.add(new Entry(13, 314));
+        carbonEmissions.add(new Entry(14, 90));
+        carbonEmissions.add(new Entry(15, 133));
+        carbonEmissions.add(new Entry(16, 90));
+        carbonEmissions.add(new Entry(17, 90));
+        carbonEmissions.add(new Entry(18, 341));
+        carbonEmissions.add(new Entry(19, 90));
+        carbonEmissions.add(new Entry(20, 313));
+        carbonEmissions.add(new Entry(21, 90));
+        carbonEmissions.add(new Entry(22, 111));
+        carbonEmissions.add(new Entry(23, 90));
 
-        BarData data = new BarData(dataSet);
-        histogramChart.setData(data);
+        // Create a LineDataSet with the carbon emissions data
+        LineDataSet dataSet = new LineDataSet(carbonEmissions, "Carbon Emissions");
+        dataSet.setColor(Color.WHITE);
+        dataSet.setDrawCircles(false);
 
-        // Customize the chart further (e.g., labels, axes, legend, etc.)
-        Description description = new Description();
-        description.setText(""); // You can add a description if needed
-        histogramChart.setDescription(description);
+        // Set the X-axis labels to time of day
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(timeOfDay));
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setTypeface(customTypeface); // Set the custom font
+        xAxis.setTextColor(Color.WHITE);
+        xAxis.setAxisLineColor(Color.WHITE);
 
-        histogramChart.setFitBars(true);
-        histogramChart.setDrawValueAboveBar(true);
-        histogramChart.invalidate(); // Refresh the chart
+        // Set the Y-axis labels
+        YAxis yAxisLeft = lineChart.getAxisLeft();
+        yAxisLeft.setTypeface(customTypeface); // Set the custom font
+        yAxisLeft.setTextColor(Color.WHITE);
+        yAxisLeft.setAxisLineColor(Color.WHITE);
 
-        return rootView;
+        // Customize the appearance of the chart
+        lineChart.setData(new LineData(dataSet));
+        lineChart.getDescription().setEnabled(false);
+        lineChart.getLegend().setEnabled(false);
+        lineChart.invalidate();
+
+        return view;
     }
 }
