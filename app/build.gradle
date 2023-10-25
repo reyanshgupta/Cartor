@@ -25,10 +25,17 @@ android {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
         }
         python {
-            version "3.9"
+            version "3.10"
         }
         python {
-            buildPython "C:/Python311/python.exe"
+            buildPython "C:/Users/happy/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0/python.exe"
+        }
+        python {
+            pip {
+                install "numpy"
+                install "opencv-python"
+                install "matplotlib"
+            }
         }
     }
 
