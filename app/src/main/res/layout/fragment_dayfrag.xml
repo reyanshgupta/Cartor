@@ -14,5 +14,9 @@
             android:text="Today"
             android:fontFamily="@font/helvetica_bold"
             android:textSize="20dp"/>
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/histogramChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </RelativeLayout>
 </FrameLayout>

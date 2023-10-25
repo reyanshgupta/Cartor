@@ -1,11 +1,20 @@
 package com.example.cartor;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,6 +64,34 @@ public class dayfrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dayfrag, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_dayfrag, container, false);
+
+        BarChart histogramChart = rootView.findViewById(R.id.histogramChart);
+        int paddingInDp = 10; // 10dp
+        float scale = getResources().getDisplayMetrics().density;
+        int paddingInPixels = (int) (paddingInDp * scale + 0.5f);
+        histogramChart.setPadding(paddingInPixels, paddingInPixels, paddingInPixels, paddingInPixels);
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        entries.add(new BarEntry(0f, 4.5f));
+        entries.add(new BarEntry(1f, 3.2f));
+        entries.add(new BarEntry(2f, 5.0f));
+        // Add more entries as needed
+
+        BarDataSet dataSet = new BarDataSet(entries, "Histogram");
+        dataSet.setColor(Color.BLUE); // Customize the color of the bars
+
+        BarData data = new BarData(dataSet);
+        histogramChart.setData(data);
+
+        // Customize the chart further (e.g., labels, axes, legend, etc.)
+        Description description = new Description();
+        description.setText(""); // You can add a description if needed
+        histogramChart.setDescription(description);
+
+        histogramChart.setFitBars(true);
+        histogramChart.setDrawValueAboveBar(true);
+        histogramChart.invalidate(); // Refresh the chart
+
+        return rootView;
     }
 }
