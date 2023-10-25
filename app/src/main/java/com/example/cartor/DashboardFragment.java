@@ -19,10 +19,6 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import com.chaquo.python.PyObject;
-import com.chaquo.python.Python;
-import com.chaquo.python.android.AndroidPlatform;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link DashboardFragment#newInstance} factory method to
@@ -79,101 +75,11 @@ public class DashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        Python.start(new AndroidPlatform(getContext()));
-        ImageView imageView = view.findViewById(R.id.imageSelect);
-        Button selectImageButton = view.findViewById(R.id.imageSelectButton);
-
-        // Set a click listener for the "Select Image" button
-        selectImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Launch the image picker intent
-                onSelectImageClick();
-            }
-        });
-
         databaseHelper = new ImageDatabaseHelper(requireContext());
-
-        selectImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onSelectImageClick();
-            }
-        });
-
         return view;
     }
 
     // Method to launch the image picker intent
     private void onSelectImageClick() {
-        // Create an intent to pick an image from the gallery
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, 1);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
-            Uri selectedImage = data.getData();
-            selectedImagePath = getPathFromUri(selectedImage);
-
-            // Save the image URI to the database
-            saveImageToDatabase(selectedImage);
-            callKMeansImageCompression(selectedImagePath);
-        }
-    }
-    private void saveImageToDatabase(Uri imageUri) {
-        SQLiteDatabase db = databaseHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(ImageDatabaseHelper.COLUMN_IMAGE_URI, imageUri.toString());
-        long newRowId = db.insert(ImageDatabaseHelper.TABLE_IMAGES, null, values);
-        if (newRowId != -1) {
-            // Image saved to the database successfully
-            Toast.makeText(requireContext(), "Image saved to the database", Toast.LENGTH_SHORT).show();
-        } else {
-            // Handle database insertion error
-            Toast.makeText(requireContext(), "Failed to save image to the database", Toast.LENGTH_SHORT).show();
-        }
-        db.close();
-    }
-    private void callKMeansImageCompression(String imagePath) {
-        Python python = Python.getInstance();
-        // Import the Python module containing your code
-        PyObject module = python.getModule("kmeans");
-        // Call the main function of your Python script
-        PyObject result = module.callAttr("main", imagePath);
-        // Get the compressed image and its size from the result
-        PyObject compressedImage = result.get(0);
-        PyObject compressedImageSize = result.get(1);
-
-        // Convert the Python objects to Java types
-        byte[] compressedImageData = compressedImage.toJava(byte[].class);
-        double compressedImageSizeKb = compressedImageSize.toJava(double.class);
-
-        // Display the compressed image in an ImageView
-        ImageView compressedImageView = requireView().findViewById(R.id.compressedImageView);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(compressedImageData, 0, compressedImageData.length);
-        compressedImageView.setImageBitmap(bitmap);
-
-        // Display the compression size in a TextView
-        TextView compressionSizeTextView = requireView().findViewById(R.id.compressionSizeTextView);
-        compressionSizeTextView.setText("Compression Size: " + compressedImageSizeKb + " KB");
-    }
-    private String getPathFromUri(Uri uri) {
-        String[] projection = {MediaStore.Images.Media.DATA};
-        Cursor cursor = requireActivity().getContentResolver().query(uri, projection, null, null, null);
-
-        if (cursor != null) {
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            String path = cursor.getString(column_index);
-            cursor.close();
-            return path;
-        } else {
-            // Handle error
-            return null;
-        }
     }
 }
