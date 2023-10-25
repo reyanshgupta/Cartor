@@ -1,10 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Base.Theme.Cartor" parent="Theme.Material3.DayNight.NoActionBar">
+<!--    <style name="Base.Theme.Cartor" parent="Theme.Material3.DayNight.NoActionBar">-->
+    <style name="Base.Theme.Cartor" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:fontFamily">@font/helvetica</item>
         <item name="android:windowBackground">@android:color/white</item> <!-- Set overall app background to white -->
-        <item name="colorAccent">#000000</item> <!-- Set UI elements to have a black background -->
         <item name="android:colorBackground">@android:color/white</item> <!-- Set background color to white -->
         <item name="android:colorPrimary">@android:color/white</item> <!-- Set primary color to white -->
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="buttonStyle">@style/BlackButton</item>
     </style>
+    <style name="BlackButton" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/rounded_button</item> <!-- Use the rounded button background drawable -->
+        <item name="android:textColor">@android:color/white</item> <!-- Set text color to white -->
+    </style>
+    <drawable name="black_button_background">#FF000000</drawable>
+
+
     <style name="Theme.Cartor" parent="Base.Theme.Cartor" />
+
 </resources>

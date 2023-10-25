@@ -45,10 +45,58 @@
                 android:text="Month" />
         </RelativeLayout>
         </ActionMenuView>
-<FrameLayout
-    android:id="@+id/home_fragment_container"
-    android:layout_width="wrap_content"
-    android:layout_height="550dp"
-    android:layout_centerInParent="true"
-    android:layout_below="@id/buttonbar"/>
+    <FrameLayout
+        android:id="@+id/home_fragment_container"
+        android:layout_width="wrap_content"
+        android:layout_height="450dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/buttonbar"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/home_fragment_container"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TreeText"
+            android:text="Offset your Carbon Emissions by planting a tree!"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/treeQuantityInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Enter the number of trees"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/totalCostofTrees"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="60"
+                android:hint="Price" />
+
+            <Button
+                android:id="@+id/submitTreesButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Plant!" />
+        </LinearLayout>
+    </LinearLayout>
+
+
 </RelativeLayout>

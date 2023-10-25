@@ -1,15 +1,16 @@
 package com.example.cartor;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -90,6 +91,29 @@ public class HomeFragment extends Fragment {
         if (savedInstanceState == null) {
             replaceFragment(new dayfrag());
         }
+
+        EditText treeQuantityInput = view.findViewById(R.id.treeQuantityInput);
+        TextView totCost = view.findViewById(R.id.totalCostofTrees);
+        Button submitTreesButton = view.findViewById(R.id.submitTreesButton);
+        submitTreesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String quantityStr = treeQuantityInput.getText().toString();
+                if (!quantityStr.isEmpty()) {
+                    int quantity = Integer.parseInt(quantityStr);
+                    int pricePerTree = 60;
+                    int totalCost = quantity * pricePerTree;
+                    totCost.setText(String.valueOf(totalCost));
+                    // Save the number of trees to Firebase
+//                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                    if (user != null) {
+//                        //write code to store value in db
+                    //also reduce the carbon emission - since trees planted = -ve emissions
+//                    }
+                }
+            }
+        });
+
         return view;
     }
 
