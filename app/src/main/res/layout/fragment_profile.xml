@@ -1,40 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/Theme.Cartor"
-    tools:context=".ProfileFragment">
+    android:padding="10dp"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- Profile Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/Profile"
-        android:layout_marginLeft="10dp"
-        android:text="Profile"
-        android:textSize="40sp"
-        android:fontFamily="@font/helvetica_bold"/>
+        android:orientation="horizontal"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
 
-    <TextView
-        android:id="@+id/ProfileHeader"
-        android:layout_width="wrap_content"
+        <!-- User Info -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:fontFamily="sans-serif-black">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/name"
+                android:hint="Name"
+                android:gravity="top|left"
+                android:fontFamily="sans-serif-black"
+                android:textSize="30sp"
+                android:layout_weight="0.6" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/username"
+                android:hint="Username"
+                android:gravity="center_vertical|left"
+                android:fontFamily="sans-serif"
+                android:layout_weight="0.4" />
+
+        </LinearLayout>
+
+        <!-- User Avatar -->
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_profile"
+            android:scaleType="fitCenter" />
+    </LinearLayout>
+
+    <!-- Carbon Emissions Progress Bar -->
+    <ProgressBar
+        android:id="@+id/carbonProgressBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome!"
-        android:layout_below="@id/Profile"
+        style="?android:attr/progressBarStyleHorizontal" />
+
+    <!-- Cartor Credits -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cartorCredits"
+        android:text="Cartor Credits: X"
+        android:padding="10dp"
         android:gravity="center"
-        android:layout_alignParentLeft="true" />
+        android:textSize="20sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ProfileHeader"
-        android:text="Content for Section 1" />
-    
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-        
-
-
-</RelativeLayout>
+</LinearLayout>
