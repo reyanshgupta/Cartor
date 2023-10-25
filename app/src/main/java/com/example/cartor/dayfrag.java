@@ -72,7 +72,7 @@ public class dayfrag extends Fragment {
         Typeface customTypeface = ResourcesCompat.getFont(requireContext(), R.font.helvetica);
         LineChart lineChart = view.findViewById(R.id.dayLineChart);
 
-        // Sample data for time of day (12 am to 6 am)
+
         List<String> timeOfDay = new ArrayList<>();
         timeOfDay.add("12 am");
         timeOfDay.add("1 am");
@@ -126,7 +126,6 @@ public class dayfrag extends Fragment {
         carbonEmissions.add(new Entry(22, 111));
         carbonEmissions.add(new Entry(23, 90));
 
-        // Create a LineDataSet with the carbon emissions data
         LineDataSet dataSet = new LineDataSet(carbonEmissions, "Carbon Emissions");
         dataSet.setColor(Color.WHITE);
         dataSet.setDrawCircles(false);
@@ -135,17 +134,16 @@ public class dayfrag extends Fragment {
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setValueFormatter(new IndexAxisValueFormatter(timeOfDay));
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTypeface(customTypeface); // Set the custom font
+        xAxis.setTypeface(customTypeface);
         xAxis.setTextColor(Color.WHITE);
         xAxis.setAxisLineColor(Color.WHITE);
 
         // Set the Y-axis labels
         YAxis yAxisLeft = lineChart.getAxisLeft();
-        yAxisLeft.setTypeface(customTypeface); // Set the custom font
+        yAxisLeft.setTypeface(customTypeface);
         yAxisLeft.setTextColor(Color.WHITE);
         yAxisLeft.setAxisLineColor(Color.WHITE);
 
-        // Customize the appearance of the chart
         lineChart.setData(new LineData(dataSet));
         lineChart.getDescription().setEnabled(false);
         lineChart.getLegend().setEnabled(false);

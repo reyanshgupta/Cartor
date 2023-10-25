@@ -96,13 +96,10 @@ public class DashboardFragment extends Fragment {
         totalScreenTimeTextView = view.findViewById(R.id.totalScreenTime);
         Typeface customTypeface = ResourcesCompat.getFont(requireContext(), R.font.helvetica);
 
-        // Check and request usage stats permission
         if (hasUsageStatsPermission()) {
-            // If permission is granted, calculate and display screen time
             Pair<Long, Long> screenTimePair = calculateScreenTime();
             displayScreenTime(screenTimePair);
         } else {
-            // Request permission from the user
             requestUsageStatsPermission();
             fetchCartorCreditsFromFirebase(view);
         }
@@ -110,10 +107,8 @@ public class DashboardFragment extends Fragment {
         long hours = screenTimePair.first;
         long minutes = screenTimePair.second;
 
-        // Find the ProgressBar
         ProgressBar screenTimeProgressBar = view.findViewById(R.id.screenTimeProgressBar);
 
-        // Update the ProgressBar with both hours and minutes
         screenTimeProgressBar.setProgress((int) hours);
         screenTimeProgressBar.setSecondaryProgress((int) (hours + minutes / 60.0 * 100));
         long screenTimeMillis = (hours * 60 + minutes) * 60 * 1000; // Convert hours and minutes to milliseconds
@@ -122,7 +117,6 @@ public class DashboardFragment extends Fragment {
         screenTimeCarbonEmissions.setText(String.format("%.2f g", carbonEmissionsGrams));
         LineChart lineChart = view.findViewById(R.id.lineChart);
 
-        // Sample data for the days of the week (monday to sunday)
         List<String> daysOfWeek = new ArrayList<>();
         daysOfWeek.add("Mon");
         daysOfWeek.add("Tue");
@@ -142,7 +136,6 @@ public class DashboardFragment extends Fragment {
         carbonEmissions.add(new Entry(5, 250));  // Saturday
         carbonEmissions.add(new Entry(6, 90));   // Sunday
 
-        // Create a LineDataSet with the carbon emissions data
         LineDataSet dataSet = new LineDataSet(carbonEmissions, "Carbon Emissions");
         dataSet.setColor(Color.WHITE);
         dataSet.setDrawCircles(false);
@@ -162,7 +155,6 @@ public class DashboardFragment extends Fragment {
         yAxisLeft.setTextColor(Color.WHITE);
         yAxisLeft.setAxisLineColor(Color.WHITE);
 
-        // Customize the appearance of the chart
         lineChart.setData(new LineData(dataSet));
         lineChart.getDescription().setEnabled(false);
         lineChart.getLegend().setEnabled(false);
@@ -196,11 +188,11 @@ public class DashboardFragment extends Fragment {
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    // Handle errors, if any
+
                 }
             });
         } else {
-            // Handle the case where no user is currently logged in
+
         }
     }
 

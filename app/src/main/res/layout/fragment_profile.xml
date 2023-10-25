@@ -8,7 +8,6 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <!-- Profile Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +16,6 @@
         android:orientation="horizontal"
         android:padding="10dp">
 
-        <!-- User Info -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -46,7 +44,6 @@
 
         </LinearLayout>
 
-        <!-- User Avatar -->
         <ImageView
             android:layout_width="0dp"
             android:layout_height="100dp"
@@ -130,7 +127,6 @@
     </LinearLayout>
 
 
-    <!-- Carbon Emissions Section -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -140,7 +136,6 @@
         android:layout_marginTop="20dp"
         android:padding="10dp">
 
-        <!-- Mails -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -169,7 +164,6 @@
                 android:gravity="end" />
         </LinearLayout>
 
-        <!-- Social Media -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -198,7 +192,6 @@
                 android:gravity="end" />
         </LinearLayout>
 
-        <!-- Calls -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -227,8 +220,5 @@
                 android:gravity="end" />
         </LinearLayout>
     </LinearLayout>
-
-    <!-- Existing XML content below this line -->
-
 
 </LinearLayout>

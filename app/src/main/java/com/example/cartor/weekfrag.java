@@ -76,7 +76,6 @@ public class weekfrag extends Fragment {
         Typeface customTypeface = ResourcesCompat.getFont(requireContext(), R.font.helvetica);
         LineChart lineChart = view.findViewById(R.id.dayLineChart);
 
-        // Sample data for the days of the week (monday to sunday)
         List<String> daysOfWeek = new ArrayList<>();
         daysOfWeek.add("Mon");
         daysOfWeek.add("Tue");
@@ -96,7 +95,6 @@ public class weekfrag extends Fragment {
         carbonEmissions.add(new Entry(5, 250));  // Saturday
         carbonEmissions.add(new Entry(6, 90));   // Sunday
 
-        // Create a LineDataSet with the carbon emissions data
         LineDataSet dataSet = new LineDataSet(carbonEmissions, "Carbon Emissions");
         dataSet.setColor(Color.WHITE);
         dataSet.setDrawCircles(false);
@@ -116,7 +114,6 @@ public class weekfrag extends Fragment {
         yAxisLeft.setTextColor(Color.WHITE);
         yAxisLeft.setAxisLineColor(Color.WHITE);
 
-        // Customize the appearance of the chart
         lineChart.setData(new LineData(dataSet));
         lineChart.getDescription().setEnabled(false);
         lineChart.getLegend().setEnabled(false);

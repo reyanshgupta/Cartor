@@ -76,7 +76,7 @@ public class monthfrag extends Fragment {
         Typeface customTypeface = ResourcesCompat.getFont(requireContext(), R.font.helvetica);
         LineChart lineChart = view.findViewById(R.id.dayLineChart);
 
-        // Use the months of the year as X-axis labels
+
         List<String> monthsOfYear = new ArrayList<>();
         monthsOfYear.add("Jan");
         monthsOfYear.add("Feb");
@@ -91,7 +91,6 @@ public class monthfrag extends Fragment {
         monthsOfYear.add("Nov");
         monthsOfYear.add("Dec");
 
-        // Use the carbon emissions data for each month
         List<Entry> carbonEmissions = new ArrayList<>();
         carbonEmissions.add(new Entry(0, 1000));   // January
         carbonEmissions.add(new Entry(1, 1200));   // February
@@ -105,7 +104,7 @@ public class monthfrag extends Fragment {
         carbonEmissions.add(new Entry(9, 900));    // October
         carbonEmissions.add(new Entry(10, 800));   // November
         carbonEmissions.add(new Entry(11, 950));   // December
-        // Create a LineDataSet with the carbon emissions data
+
         LineDataSet dataSet = new LineDataSet(carbonEmissions, "Carbon Emissions");
         dataSet.setColor(Color.WHITE);
         dataSet.setDrawCircles(false);
@@ -114,17 +113,16 @@ public class monthfrag extends Fragment {
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setValueFormatter(new IndexAxisValueFormatter(monthsOfYear));
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTypeface(customTypeface); // Set the custom font
+        xAxis.setTypeface(customTypeface);
         xAxis.setTextColor(Color.WHITE);
         xAxis.setAxisLineColor(Color.WHITE);
 
         // Set the Y-axis labels
         YAxis yAxisLeft = lineChart.getAxisLeft();
-        yAxisLeft.setTypeface(customTypeface); // Set the custom font
+        yAxisLeft.setTypeface(customTypeface);
         yAxisLeft.setTextColor(Color.WHITE);
         yAxisLeft.setAxisLineColor(Color.WHITE);
 
-        // Customize the appearance of the chart
         lineChart.setData(new LineData(dataSet));
         lineChart.getDescription().setEnabled(false);
         lineChart.getLegend().setEnabled(false);
