@@ -2,9 +2,15 @@ plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
     id 'com.chaquo.python'
+
 }
 
 android {
+    signingConfigs {
+        python {
+            storeFile file('/usr/bin/python3')
+        }
+    }
     namespace 'com.example.cartor'
     compileSdk 34
 
@@ -45,7 +51,6 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'

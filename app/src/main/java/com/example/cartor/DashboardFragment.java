@@ -1,21 +1,27 @@
 package com.example.cartor;
-
+import android.graphics.Bitmap;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+
+import com.chaquo.python.PyObject;
+import com.chaquo.python.Python;
+import com.chaquo.python.android.AndroidPlatform;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +39,7 @@ public class DashboardFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String selectedImagePath;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -72,7 +79,7 @@ public class DashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
-
+        Python.start(new AndroidPlatform(getContext()));
         ImageView imageView = view.findViewById(R.id.imageSelect);
         Button selectImageButton = view.findViewById(R.id.imageSelectButton);
 
@@ -110,19 +117,18 @@ public class DashboardFragment extends Fragment {
 
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
             Uri selectedImage = data.getData();
+            selectedImagePath = getPathFromUri(selectedImage);
 
             // Save the image URI to the database
             saveImageToDatabase(selectedImage);
+            callKMeansImageCompression(selectedImagePath);
         }
     }
     private void saveImageToDatabase(Uri imageUri) {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(ImageDatabaseHelper.COLUMN_IMAGE_URI, imageUri.toString());
-
         long newRowId = db.insert(ImageDatabaseHelper.TABLE_IMAGES, null, values);
-
         if (newRowId != -1) {
             // Image saved to the database successfully
             Toast.makeText(requireContext(), "Image saved to the database", Toast.LENGTH_SHORT).show();
@@ -130,7 +136,44 @@ public class DashboardFragment extends Fragment {
             // Handle database insertion error
             Toast.makeText(requireContext(), "Failed to save image to the database", Toast.LENGTH_SHORT).show();
         }
-
         db.close();
+    }
+    private void callKMeansImageCompression(String imagePath) {
+        Python python = Python.getInstance();
+        // Import the Python module containing your code
+        PyObject module = python.getModule("kmeans");
+        // Call the main function of your Python script
+        PyObject result = module.callAttr("main", imagePath);
+        // Get the compressed image and its size from the result
+        PyObject compressedImage = result.get(0);
+        PyObject compressedImageSize = result.get(1);
+
+        // Convert the Python objects to Java types
+        byte[] compressedImageData = compressedImage.toJava(byte[].class);
+        double compressedImageSizeKb = compressedImageSize.toJava(double.class);
+
+        // Display the compressed image in an ImageView
+        ImageView compressedImageView = requireView().findViewById(R.id.compressedImageView);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(compressedImageData, 0, compressedImageData.length);
+        compressedImageView.setImageBitmap(bitmap);
+
+        // Display the compression size in a TextView
+        TextView compressionSizeTextView = requireView().findViewById(R.id.compressionSizeTextView);
+        compressionSizeTextView.setText("Compression Size: " + compressedImageSizeKb + " KB");
+    }
+    private String getPathFromUri(Uri uri) {
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = requireActivity().getContentResolver().query(uri, projection, null, null, null);
+
+        if (cursor != null) {
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            String path = cursor.getString(column_index);
+            cursor.close();
+            return path;
+        } else {
+            // Handle error
+            return null;
+        }
     }
 }

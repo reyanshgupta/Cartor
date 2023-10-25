@@ -40,19 +40,21 @@
             android:id="@+id/DCTButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:text="DCT" />
 
         <Button
             android:id="@+id/HadamardButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:text="Hadamard" />
     </LinearLayout>
     <ImageView
         android:id="@+id/imageSelect"
         android:layout_below="@id/LLbuttons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:src="@android:drawable/ic_menu_gallery"
@@ -75,18 +77,26 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:adjustViewBounds="true" />
-    <EditText
+    <ImageView
+        android:id="@+id/compressedImageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/imageSelectButton"
+        android:contentDescription="Compressed Image"
+        android:scaleType="centerCrop" />
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/CompressionET"
-        android:layout_below="@id/imageOutput"
+        android:id="@+id/compressionSizeTextView"
+        android:layout_below="@id/compressedImageView"
         android:layout_centerHorizontal="true"
-        android:hint="Compression %"/>
-    <EditText
+        android:hint="Compressed Image Size"/>
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/CarbonOffsetET"
-        android:layout_below="@id/CompressionET"
+        android:layout_below="@id/compressionSizeTextView"
         android:layout_centerHorizontal="true"
         android:hint="CarbonOffset"/>
 </RelativeLayout>
