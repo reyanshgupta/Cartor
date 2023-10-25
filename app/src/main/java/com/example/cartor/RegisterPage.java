@@ -24,6 +24,10 @@ import com.google.firebase.database.FirebaseDatabase;
 public class RegisterPage extends AppCompatActivity {
 
     EditText registerfull, registeruser, registeremail, registerpass;
+    private static final Integer credits = 100;
+    private static final Integer treeplanted = 0;
+    private static final Integer points = 0;
+    public static final Integer carbonemitted = 0;
     Button registerbutton;
     FirebaseDatabase database;
     DatabaseReference reference;
@@ -81,7 +85,7 @@ public class RegisterPage extends AppCompatActivity {
                                             });
 
                                     // Now, add user data to the Realtime Database using the UID as the parent node
-                                    HelperClass helperClass = new HelperClass(name, user, email, pass);
+                                    HelperClass helperClass = new HelperClass(name, user, email, pass, credits, treeplanted, points, carbonemitted);
                                     reference.child(uid).setValue(helperClass);
 
                                     // Redirect to the main activity
