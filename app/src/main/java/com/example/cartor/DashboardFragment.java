@@ -1,6 +1,9 @@
 package com.example.cartor;
 
+import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -10,7 +13,9 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +28,7 @@ public class DashboardFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private ImageDatabaseHelper databaseHelper;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -66,13 +72,65 @@ public class DashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        ImageView imageInput = view.findViewById(R.id.imageSelect);
+
+        ImageView imageView = view.findViewById(R.id.imageSelect);
+        Button selectImageButton = view.findViewById(R.id.imageSelectButton);
+
+        // Set a click listener for the "Select Image" button
+        selectImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Launch the image picker intent
+                onSelectImageClick();
+            }
+        });
+
+        databaseHelper = new ImageDatabaseHelper(requireContext());
+
+        selectImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSelectImageClick();
+            }
+        });
+
         return view;
     }
 
-    public void onSelectImageClick(View view) {
-        // Create an intent to pick an image from the gallery.
+    // Method to launch the image picker intent
+    private void onSelectImageClick() {
+        // Create an intent to pick an image from the gallery
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, 1);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+            Uri selectedImage = data.getData();
+
+            // Save the image URI to the database
+            saveImageToDatabase(selectedImage);
+        }
+    }
+    private void saveImageToDatabase(Uri imageUri) {
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(ImageDatabaseHelper.COLUMN_IMAGE_URI, imageUri.toString());
+
+        long newRowId = db.insert(ImageDatabaseHelper.TABLE_IMAGES, null, values);
+
+        if (newRowId != -1) {
+            // Image saved to the database successfully
+            Toast.makeText(requireContext(), "Image saved to the database", Toast.LENGTH_SHORT).show();
+        } else {
+            // Handle database insertion error
+            Toast.makeText(requireContext(), "Failed to save image to the database", Toast.LENGTH_SHORT).show();
+        }
+
+        db.close();
     }
 }
