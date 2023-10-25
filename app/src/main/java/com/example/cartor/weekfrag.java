@@ -1,12 +1,25 @@
 package com.example.cartor;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.Fragment;
+
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +72,56 @@ public class weekfrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_weekfrag, container, false);
+        View view = inflater.inflate(R.layout.fragment_dayfrag, container, false);
+        Typeface customTypeface = ResourcesCompat.getFont(requireContext(), R.font.helvetica);
+        LineChart lineChart = view.findViewById(R.id.dayLineChart);
+
+        // Sample data for the days of the week (monday to sunday)
+        List<String> daysOfWeek = new ArrayList<>();
+        daysOfWeek.add("Mon");
+        daysOfWeek.add("Tue");
+        daysOfWeek.add("Wed");
+        daysOfWeek.add("Thu");
+        daysOfWeek.add("Fri");
+        daysOfWeek.add("Sat");
+        daysOfWeek.add("Sun");
+
+        // Sample data for carbon emissions
+        List<Entry> carbonEmissions = new ArrayList<>();
+        carbonEmissions.add(new Entry(0, 100));  // Monday
+        carbonEmissions.add(new Entry(1, 150));  // Tuesday
+        carbonEmissions.add(new Entry(2, 200));  // Wednesday
+        carbonEmissions.add(new Entry(3, 175));  // Thursday
+        carbonEmissions.add(new Entry(4, 120));  // Friday
+        carbonEmissions.add(new Entry(5, 250));  // Saturday
+        carbonEmissions.add(new Entry(6, 90));   // Sunday
+
+        // Create a LineDataSet with the carbon emissions data
+        LineDataSet dataSet = new LineDataSet(carbonEmissions, "Carbon Emissions");
+        dataSet.setColor(Color.WHITE);
+        dataSet.setDrawCircles(false);
+
+        // Set the X-axis labels
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(daysOfWeek));
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setTypeface(customTypeface); // Set the custom font
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setTextColor(Color.WHITE);
+        xAxis.setAxisLineColor(Color.WHITE);
+
+        // Set the Y-axis labels
+        YAxis yAxisLeft = lineChart.getAxisLeft();
+        yAxisLeft.setTypeface(customTypeface); // Set the custom font
+        yAxisLeft.setTextColor(Color.WHITE);
+        yAxisLeft.setAxisLineColor(Color.WHITE);
+
+        // Customize the appearance of the chart
+        lineChart.setData(new LineData(dataSet));
+        lineChart.getDescription().setEnabled(false);
+        lineChart.getLegend().setEnabled(false);
+        lineChart.invalidate();
+
+        return view;
     }
 }
