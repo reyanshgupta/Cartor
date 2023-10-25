@@ -5,13 +5,17 @@
     android:theme="@style/Base.Theme.Cartor"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/heading"
-        android:layout_marginLeft="10dp"
         android:text="Cartor"
         android:textSize="40sp"
-        android:fontFamily="@font/helvetica_bold"/>
+        android:fontFamily="@font/helvetica_bold"
+        android:background="#000000"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        />
+
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
