@@ -25,14 +25,14 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:orientation="vertical"
-            android:fontFamily="sans-serif-black">
+            android:fontFamily="@font/helvetica_bold-black">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Name"
                 android:id="@+id/name"
                 android:gravity="top|left"
-                android:fontFamily="sans-serif-black"
+                android:fontFamily="@font/helvetica_bold-black"
                 android:textSize="30sp"
                 android:layout_weight="0.2"/>
             <TextView
@@ -41,7 +41,7 @@
                 android:hint="username"
                 android:id="@+id/username"
                 android:gravity="center_vertical|left"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/helvetica_bold"
                 android:layout_weight="0.4"/>
         </LinearLayout>
 
@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/credittext"
                     android:text="Cartor credits"
-                    android:fontFamily="sans-serif-black"
+                    android:fontFamily="@font/helvetica_bold"
                     android:textSize="20sp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
@@ -88,7 +88,7 @@
                     android:id="@+id/carboncredits"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-black"
+                    android:fontFamily="@font/helvetica_bold"
                     android:text="3540"
                     android:textSize="30sp"
                     android:layout_gravity="center"
@@ -100,8 +100,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="0.6"
-            android:weightSum="4"
+            android:weightSum="5"
             android:layout_marginTop="20dp"
             android:background="@drawable/border"
             android:backgroundTint="#D3D3D3"
@@ -113,6 +112,8 @@
                 android:orientation="horizontal"
                 android:layout_weight="2"
                 android:weightSum="2"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 >
 
                 <LinearLayout
@@ -121,23 +122,26 @@
                     android:orientation="vertical"
                     android:layout_weight="1"
                     android:weightSum="1"
+                    android:padding="10dp"
                     android:background="@drawable/border"
                     android:backgroundTint="#D3D3D3">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
-                        android:text="1000"
+                        android:fontFamily="@font/helvetica_bold"
                         android:gravity="center|bottom"
-                        android:textSize="25sp"
-                        android:fontFamily="sans-serif-black"/>
+                        android:text="1000"
+                        android:textSize="25sp" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Cartor Credits"
                         android:layout_weight="0.5"
                         android:gravity="center_horizontal"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/helvetica_bold"
                         android:textSize="15sp"/>
                 </LinearLayout>
 
@@ -146,6 +150,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:layout_weight="1"
+                    android:layout_marginStart="10dp"
                     android:weightSum="1"
                     android:background="@drawable/border"
                     android:backgroundTint="#D3D3D3">
@@ -157,14 +162,14 @@
                         android:text="2000"
                         android:gravity="center|bottom"
                         android:textSize="25sp"
-                        android:fontFamily="sans-serif-black"/>
+                        android:fontFamily="@font/helvetica_bold"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Cartor Credits"
                         android:layout_weight="0.5"
                         android:gravity="center_horizontal"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/helvetica_bold"
                         android:textSize="15sp"/>
                 </LinearLayout>
 
@@ -175,29 +180,32 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="2"
+                android:padding="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:weightSum="2"
                 >
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Buy $30"
                     android:gravity="center"
                     android:textSize="20sp"
-                    android:background="@drawable/summary_border"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/border"
                     android:backgroundTint="#D3D3D3"
                     android:layout_marginRight="10dp"/>
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Buy $50"
                     android:gravity="center"
                     android:textSize="20sp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/summary_border"
                     android:backgroundTint="#D3D3D3" />
 
@@ -221,6 +229,10 @@
                     android:queryHint="Search Here"
                     android:iconifiedByDefault="false"
                     android:layout_alignParentTop="true"/>
+                <ListView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/listview"/>
 
             </LinearLayout>
         </LinearLayout>
