@@ -86,7 +86,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
-                android:text="60 C"
+                android:text="₹60"
                 android:hint="Price" />
 
             <Button
