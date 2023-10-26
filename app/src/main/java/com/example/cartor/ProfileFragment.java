@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
  */
 public class ProfileFragment extends Fragment {
 
-    private TextView level, levelnum, remainingpoints, mailemission, socialemission, callemission;
+    private TextView level, levelnum, remainingpoints, mailemission, socialemission, callemission, CartorCreditsProfile;
 
     private ProgressBar progressBar;
 
@@ -85,6 +85,7 @@ public class ProfileFragment extends Fragment {
         mailemission = view.findViewById(R.id.mailemission);
         socialemission = view.findViewById(R.id.socialemission);
         callemission = view.findViewById(R.id.callemission);
+        CartorCreditsProfile = view.findViewById(R.id.CartorCreditsProfile);
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
@@ -99,11 +100,13 @@ public class ProfileFragment extends Fragment {
                     if (dataSnapshot.exists()) {
                         String username = dataSnapshot.child("username").getValue(String.class);
                         String name = dataSnapshot.child("name").getValue(String.class);
+                        Integer Credits = dataSnapshot.child("credits").getValue(Integer.class);
                         Integer MailEmission = dataSnapshot.child("mailemission").getValue(Integer.class);
                         Integer SocialEmission = dataSnapshot.child("socialemission").getValue(Integer.class);
                         Integer CallEmission = dataSnapshot.child("callemission").getValue(Integer.class);
 
 
+                        CartorCreditsProfile.setText(String.valueOf(Credits));
                         profileUsername.setText(username);
                         profileName.setText(name);
                         mailemission.setText(MailEmission + " g CO2e");
