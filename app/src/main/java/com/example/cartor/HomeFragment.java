@@ -8,9 +8,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,6 +27,8 @@ import androidx.fragment.app.FragmentTransaction;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
+
+    private DatabaseReference usersRef;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,6 +79,11 @@ public class HomeFragment extends Fragment {
         Button weekButton = view.findViewById(R.id.weekbutton);
         Button monthButton = view.findViewById(R.id.monthbutton);
 
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        usersRef = database.getReference("users");
+
         todayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,6 +119,7 @@ public class HomeFragment extends Fragment {
                     int quantity = Integer.parseInt(quantityStr);
                     int pricePerTree = 60;
                     int totalCost = quantity * pricePerTree;
+<<<<<<< Updated upstream
                     totCost.setText("₹"+ String.valueOf(totalCost));
                     // Save the number of trees to Firebase
 //                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -110,6 +127,35 @@ public class HomeFragment extends Fragment {
 //                        //write code to store value in db
                     //also reduce the carbon emission - since trees planted = -ve emissions
 //                    }
+=======
+                    totCost.setText(String.valueOf(totalCost));
+
+                    if(currentUser!=null){
+                        String uid = currentUser.getUid();
+
+                        usersRef.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if(snapshot.exists()){
+
+                                    Integer Tree = snapshot.child("treeplanted").getValue(Integer.class);
+                                    Integer Credits = snapshot.child("credits").getValue(Integer.class);
+
+                                    int newtree = Tree + quantity;
+                                    int newcredits = Credits + totalCost;
+
+                                    usersRef.child(uid).child("treeplanted").setValue(newtree);
+                                    usersRef.child(uid).child("credits").setValue(newcredits);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    }
+>>>>>>> Stashed changes
                 }
             }
         });
