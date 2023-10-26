@@ -156,7 +156,7 @@ public class CommunityFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                
+
                 Log.e("Leaderboard", "Error reading data from the database: " + databaseError.getMessage());
             }
         });

@@ -112,6 +112,7 @@ public class DashboardFragment extends Fragment {
 
         screenTimeProgressBar.setProgress((int) hours);
         screenTimeProgressBar.setSecondaryProgress((int) (hours + minutes / 60.0 * 100));
+        screenTimeProgressBar.setMax(24);
         long screenTimeMillis = (hours * 60 + minutes) * 60 * 1000; // Convert hours and minutes to milliseconds
         double carbonEmissionsGrams = calculateCarbonEmissions(screenTimeMillis);
         TextView screenTimeCarbonEmissions = view.findViewById(R.id.ScreenTimeCarbonEmissions);
