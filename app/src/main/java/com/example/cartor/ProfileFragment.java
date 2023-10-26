@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,10 @@ import com.google.firebase.database.ValueEventListener;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
+
+    private TextView level, levelnum, remainingpoints, mailemission, socialemission, callemission;
+
+    private ProgressBar progressBar;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -73,6 +78,14 @@ public class ProfileFragment extends Fragment {
 
         TextView profileUsername = view.findViewById(R.id.profileUsername);
         TextView profileName = view.findViewById(R.id.profileName);
+        level = view.findViewById(R.id.level);
+        levelnum = view.findViewById(R.id.levelnum);
+        remainingpoints = view.findViewById(R.id.remainingpoints);
+        progressBar = view.findViewById(R.id.progressBar);
+        mailemission = view.findViewById(R.id.mailemission);
+        socialemission = view.findViewById(R.id.socialemission);
+        callemission = view.findViewById(R.id.callemission);
+
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -86,11 +99,37 @@ public class ProfileFragment extends Fragment {
                     if (dataSnapshot.exists()) {
                         String username = dataSnapshot.child("username").getValue(String.class);
                         String name = dataSnapshot.child("name").getValue(String.class);
+                        Integer MailEmission = dataSnapshot.child("mailemission").getValue(Integer.class);
+                        Integer SocialEmission = dataSnapshot.child("socialemission").getValue(Integer.class);
+                        Integer CallEmission = dataSnapshot.child("callemission").getValue(Integer.class);
 
-                        // Set the retrieved data to the TextViews
+
                         profileUsername.setText(username);
                         profileName.setText(name);
+                        mailemission.setText(MailEmission + " g CO2e");
+                        socialemission.setText(SocialEmission + " g CO2e");
+                        callemission.setText(CallEmission + " g CO2e");
+
+                        Integer points = dataSnapshot.child("points").getValue(Integer.class);
+                        setProgress(points);
                     }
+                }
+
+                private void setProgress(Integer points) {
+                    int userlevel = (points/100)+1;
+                    int progress = points % 100;
+
+                    if (userlevel >= 1 && userlevel <= 10) {
+                        progressBar.setMax(100);
+                        progressBar.setProgress(progress);
+                    } else {
+                        progressBar.setMax(100);
+                        progressBar.setProgress(100);
+                    }
+
+                    level.setText("Level: " + userlevel);
+                    levelnum.setText(progress + "/100");
+                    remainingpoints.setText("Achieve " + (100-progress)+" more points for next level");
                 }
 
                 @Override

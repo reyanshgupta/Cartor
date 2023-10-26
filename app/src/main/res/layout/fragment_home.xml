@@ -48,7 +48,7 @@
     <FrameLayout
         android:id="@+id/home_fragment_container"
         android:layout_width="wrap_content"
-        android:layout_height="450dp"
+        android:layout_height="400dp"
         android:layout_centerInParent="true"
         android:layout_below="@id/buttonbar"/>
 
@@ -68,7 +68,7 @@
             android:text="Offset your Carbon Emissions by planting a tree!"/>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center">
@@ -77,16 +77,16 @@
                 android:id="@+id/treeQuantityInput"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Enter the number of trees"
+                android:layout_weight="1.2"
+                android:hint="Number of trees"
                 android:inputType="number" />
 
             <TextView
                 android:id="@+id/totalCostofTrees"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="60"
+                android:layout_weight="0.3"
+                android:text="60 C"
                 android:hint="Price" />
 
             <Button
@@ -94,7 +94,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Plant!" />
+                android:text="Plant!"/>
         </LinearLayout>
     </LinearLayout>
 

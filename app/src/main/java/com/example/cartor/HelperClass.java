@@ -2,7 +2,7 @@ package com.example.cartor;
 
 public class HelperClass {
     String name, username, email, password;
-    Integer credits, treeplanted, points, carbonemitted;
+    Integer credits, treeplanted, points, carbonemitted, mailemission, socialemission, callemission;
 
     public String getName() {
         return name;
@@ -68,8 +68,32 @@ public class HelperClass {
         this.carbonemitted = carbonemitted;
     }
 
+    public int getMailEmission(int mailemission){
+        return mailemission;
+    }
 
-    public HelperClass(String name, String username, String email, String password, Integer credits, Integer treeplanted, Integer points, Integer carbonemitted) {
+    public void setMailEmisssion(int mailemission){
+        this.mailemission = mailemission;
+    }
+
+    public int getCallEmission(int callemission){
+        return callemission;
+    }
+
+    public void setCallEmission(int callemission){
+        this.callemission = callemission;
+    }
+
+    public int getSocialEmission(int socialemission){
+        return socialemission;
+    }
+
+    public void setSocialEmission(int socialemission){
+        this.socialemission = socialemission;
+    }
+
+
+    public HelperClass(String name, String username, String email, String password, Integer credits, Integer treeplanted, Integer points, Integer carbonemitted, Integer mailemission, Integer callemission, Integer socialemission) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -77,6 +101,9 @@ public class HelperClass {
         this.credits = credits;
         this.treeplanted = treeplanted;
         this.points = points;
+        this.mailemission = mailemission;
+        this.callemission = callemission;
+        this.socialemission = socialemission;
     }
 
     public HelperClass() {

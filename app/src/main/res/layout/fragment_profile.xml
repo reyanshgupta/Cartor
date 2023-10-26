@@ -53,6 +53,51 @@
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:background="@drawable/border"
+        android:backgroundTint="#D3D3D3"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/level"
+            android:text="level 5"
+            android:fontFamily="sans-serif"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/level"
+            android:layout_alignParentRight="true"
+            android:id="@+id/levelnum"
+            android:text="50/100"
+            android:textAlignment="viewEnd"/>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_below="@id/levelnum"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:progressDrawable="@drawable/custom_progress_drawable"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/remainingpoints"
+            android:hint="Achieve 50 more points for next level"
+            android:layout_below="@id/progressBar"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif"
+            />
+
+
+    </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -161,7 +206,8 @@
                 android:layout_weight="1"
                 android:text="250 g CO2e"
                 android:textSize="18sp"
-                android:gravity="end" />
+                android:gravity="end"
+                android:id="@+id/mailemission"/>
         </LinearLayout>
 
         <LinearLayout
@@ -189,7 +235,8 @@
                 android:layout_weight="1"
                 android:text="120 g CO2e"
                 android:textSize="18sp"
-                android:gravity="end" />
+                android:gravity="end"
+                android:id="@+id/socialemission"/>
         </LinearLayout>
 
         <LinearLayout
@@ -217,7 +264,8 @@
                 android:layout_weight="1"
                 android:text="50 g CO2e"
                 android:textSize="18sp"
-                android:gravity="end" />
+                android:gravity="end"
+                android:id="@+id/callemission"/>
         </LinearLayout>
     </LinearLayout>
 

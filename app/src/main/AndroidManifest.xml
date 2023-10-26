@@ -15,6 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cartor"
         tools:targetApi="31">
+        <activity android:name=".RegisterPage"
+            android:exported="false"/>
+        <activity android:name=".LandingPage"
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

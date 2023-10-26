@@ -43,6 +43,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class DashboardFragment extends Fragment {
+    public static final double varEmission = 0;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -177,11 +178,21 @@ public class DashboardFragment extends Fragment {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        Integer cartorCredits = dataSnapshot.child("Cartor Credits").getValue(Integer.class);
+                        Integer cartorCredits = dataSnapshot.child("credits").getValue(Integer.class);
+                        Integer CarbonEmitted = dataSnapshot.child("carbonemitted").getValue(Integer.class);
 
                         if (cartorCredits != null) {
                             TextView cartorCreditsTextView = view.findViewById(R.id.CartorCreditsDash);
                             cartorCreditsTextView.setText("Cartor Credits: " + cartorCredits);
+                        }
+
+                        if(CarbonEmitted != null){
+                            Pair<Long, Long> screenTimePair = calculateScreenTime();
+                            long hours = screenTimePair.first;
+                            long minutes = screenTimePair.second;
+                            long screenTimeMillis = (hours * 60 + minutes) * 60 * 1000;
+                            double emission = CarbonEmitted + calculateCarbonEmissions(screenTimeMillis);
+                            usersRef.child(userId).child("carbonemitted").setValue(emission);
                         }
                     }
                 }

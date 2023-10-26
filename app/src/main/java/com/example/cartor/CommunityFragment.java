@@ -28,8 +28,7 @@ import com.google.firebase.database.ValueEventListener;
  */
 public class CommunityFragment extends Fragment {
 
-    private TextView username, name, carboncredits, treesplanted, level, levelnum, remainingpoints, carbonemitted;
-    private ProgressBar progressBar;
+    private TextView username, name, carboncredits, treesplanted, carbonemitted;
 
     private DatabaseReference usersRef;
 
@@ -92,10 +91,6 @@ public class CommunityFragment extends Fragment {
         name = view.findViewById(R.id.name);
         carboncredits = view.findViewById(R.id.carboncredits);
         treesplanted = view.findViewById(R.id.treesplanted);
-        level = view.findViewById(R.id.level);
-        levelnum = view.findViewById(R.id.levelnum);
-        remainingpoints = view.findViewById(R.id.remainingpoints);
-        progressBar = view.findViewById(R.id.progressBar);
         carbonemitted = view.findViewById(R.id.carbonemitted);
 
 
@@ -118,31 +113,12 @@ public class CommunityFragment extends Fragment {
                         Integer treeplanted = snapshot.child("treeplanted").getValue(Integer.class);
                         treesplanted.setText(String.valueOf(treeplanted));
 
-                        Integer points = snapshot.child("points").getValue(Integer.class);
-                        setProgress(points);
-
                         Integer CarbonEmitted = snapshot.child("carbonemitted").getValue(Integer.class);
                         carbonemitted.setText(CarbonEmitted + " Kg");
 
                     }
                 }
 
-                private void setProgress(Integer points) {
-                    int userlevel = (points/100)+1;
-                    int progress = points % 100;
-
-                    if (userlevel >= 1 && userlevel <= 10) {
-                        progressBar.setMax(100);
-                        progressBar.setProgress(progress);
-                    } else {
-                        progressBar.setMax(100);
-                        progressBar.setProgress(100);
-                    }
-
-                    level.setText("Level: " + userlevel);
-                    levelnum.setText(progress + "/100");
-                    remainingpoints.setText("Achieve " + (100-progress)+" more points for next level");
-                }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
