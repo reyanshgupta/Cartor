@@ -119,15 +119,8 @@ public class HomeFragment extends Fragment {
                     int quantity = Integer.parseInt(quantityStr);
                     int pricePerTree = 60;
                     int totalCost = quantity * pricePerTree;
-<<<<<<< Updated upstream
+
                     totCost.setText("₹"+ String.valueOf(totalCost));
-                    // Save the number of trees to Firebase
-//                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//                    if (user != null) {
-//                        //write code to store value in db
-                    //also reduce the carbon emission - since trees planted = -ve emissions
-//                    }
-=======
                     totCost.setText(String.valueOf(totalCost));
 
                     if(currentUser!=null){
@@ -155,7 +148,6 @@ public class HomeFragment extends Fragment {
                             }
                         });
                     }
->>>>>>> Stashed changes
                 }
             }
         });
