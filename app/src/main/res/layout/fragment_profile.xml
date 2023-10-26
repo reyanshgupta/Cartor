@@ -179,7 +179,7 @@
         android:background="@drawable/border"
         android:backgroundTint="#D3D3D3"
         android:layout_marginTop="20dp"
-        android:padding="10dp">
+        android:padding="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -219,6 +219,7 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/ic_social_media"
                 android:contentDescription="Social Media Icon" />
 
@@ -248,6 +249,7 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/ic_phone"
                 android:contentDescription="Calls Icon" />
 
