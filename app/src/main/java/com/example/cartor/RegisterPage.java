@@ -24,7 +24,13 @@ import com.google.firebase.database.FirebaseDatabase;
 public class RegisterPage extends AppCompatActivity {
 
     EditText registerfull, registeruser, registeremail, registerpass;
-    private static final Integer credits = 100, treeplanted = 0, points = 0, carbonemitted = 0, mailemission = 0, callemission = 0, socialemission = 0;
+    private static final Integer credits = 100;
+    private static final Integer treeplanted = 0;
+    private static final Integer points = 0;
+    private static final Integer carbonemitted = 0;
+    private static final Integer mailemission = 0;
+    private static final Integer callemission = 0;
+    private static final Integer socialemission = 0;
 
     Button registerbutton;
     FirebaseDatabase database;
@@ -55,7 +61,6 @@ public class RegisterPage extends AppCompatActivity {
 
                 FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
-                // Create the user in Firebase Authentication
                 firebaseAuth.createUserWithEmailAndPassword(email, pass)
                         .addOnCompleteListener(RegisterPage.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -63,7 +68,7 @@ public class RegisterPage extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     // User created successfully in Firebase Authentication
                                     FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-                                    String uid = currentUser.getUid(); // Get the UID of the newly created user
+                                    String uid = currentUser.getUid();
 
                                     currentUser.sendEmailVerification()
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {

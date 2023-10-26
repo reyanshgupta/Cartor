@@ -36,62 +36,61 @@ public class HelperClass {
         this.password = password;
     }
 
-    public int getCredits() {
+    public Integer getCredits() {
         return credits;
     }
 
-    public void setCredits(int credits) {
+    public void setCredits(Integer credits) {
         this.credits = credits;
     }
 
-    public int getTreePlanted(){
+    public Integer getTreePlanted() {
         return treeplanted;
     }
 
-    public void setTreePlanted(int treeplanted){
+    public void setTreePlanted(Integer treeplanted) {
         this.treeplanted = treeplanted;
     }
 
-    public int getPoints(int points){
+    public Integer getPoints() {
         return points;
     }
 
-    public void setPoints(int points){
+    public void setPoints(Integer points) {
         this.points = points;
     }
 
-    public int getCarbonEmitted(int carbonemitted){
+    public Integer getCarbonEmitted() {
         return carbonemitted;
     }
 
-    public void setCarbonEmitted(int carbonemitted){
+    public void setCarbonEmitted(Integer carbonemitted) {
         this.carbonemitted = carbonemitted;
     }
 
-    public int getMailEmission(int mailemission){
+    public Integer getMailEmission() {
         return mailemission;
     }
 
-    public void setMailEmisssion(int mailemission){
+    public void setMailEmission(Integer mailemission) {
         this.mailemission = mailemission;
     }
 
-    public int getCallEmission(int callemission){
+    public Integer getCallEmission() {
         return callemission;
     }
 
-    public void setCallEmission(int callemission){
+    public void setCallEmission(Integer callemission) {
         this.callemission = callemission;
     }
 
-    public int getSocialEmission(int socialemission){
+    public Integer getSocialEmission() {
         return socialemission;
     }
 
-    public void setSocialEmission(int socialemission){
+    public void setSocialEmission(Integer socialemission) {
         this.socialemission = socialemission;
     }
-
 
     public HelperClass(String name, String username, String email, String password, Integer credits, Integer treeplanted, Integer points, Integer carbonemitted, Integer mailemission, Integer callemission, Integer socialemission) {
         this.name = name;
@@ -101,6 +100,7 @@ public class HelperClass {
         this.credits = credits;
         this.treeplanted = treeplanted;
         this.points = points;
+        this.carbonemitted = carbonemitted;
         this.mailemission = mailemission;
         this.callemission = callemission;
         this.socialemission = socialemission;

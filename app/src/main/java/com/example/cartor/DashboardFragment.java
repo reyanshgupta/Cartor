@@ -182,10 +182,10 @@ public class DashboardFragment extends Fragment {
                         Integer cartorCredits = dataSnapshot.child("credits").getValue(Integer.class);
                         Integer CarbonEmitted = dataSnapshot.child("carbonemitted").getValue(Integer.class);
 
-                        if (cartorCredits != null) {
-                            TextView cartorCreditsTextView = view.findViewById(R.id.carboncredits);
-                            cartorCreditsTextView.setText("Cartor Credits: " + cartorCredits);
-                        }
+
+                        TextView cartorCreditsTextView = view.findViewById(R.id.carboncredits);
+                        cartorCreditsTextView.setText("Cartor Credits: " + cartorCredits);
+
 
                         if(CarbonEmitted != null){
                             Pair<Long, Long> screenTimePair = calculateScreenTime();
