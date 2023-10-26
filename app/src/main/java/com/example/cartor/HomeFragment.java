@@ -103,7 +103,7 @@ public class HomeFragment extends Fragment {
                     int quantity = Integer.parseInt(quantityStr);
                     int pricePerTree = 60;
                     int totalCost = quantity * pricePerTree;
-                    totCost.setText(String.valueOf(totalCost));
+                    totCost.setText("₹"+ String.valueOf(totalCost));
                     // Save the number of trees to Firebase
 //                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 //                    if (user != null) {

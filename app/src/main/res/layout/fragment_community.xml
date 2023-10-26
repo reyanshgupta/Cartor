@@ -13,7 +13,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
+        android:layout_marginRight="15dp"
+        android:padding="10dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -24,14 +25,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:orientation="vertical"
-                android:fontFamily="sans-serif-black">
+                android:fontFamily="@font/helvetica">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Name"
                     android:id="@+id/name"
                     android:gravity="top|left"
-                    android:fontFamily="sans-serif-black"
+                    android:fontFamily="@font/helvetica"
                     android:textSize="30sp"
                     android:layout_weight="0.2"/>
                 <TextView
@@ -40,7 +41,7 @@
                     android:hint="username"
                     android:id="@+id/username"
                     android:gravity="center_vertical|left"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/helvetica_bold"
                     android:layout_weight="0.4"/>
             </LinearLayout>
 
@@ -56,6 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:background="@drawable/border"
+            android:backgroundTint="#D3D3D3"
             android:layout_marginTop="20dp">
 
             <LinearLayout
@@ -84,7 +87,7 @@
                             android:id="@+id/treesplanted"
                             android:text="10"
                             android:textSize="20sp"
-                            android:fontFamily="sans-serif-black"/>
+                            android:fontFamily="@font/helvetica"/>
                     </LinearLayout>
 
                     <TextView
@@ -93,7 +96,7 @@
                         android:text="Total trees\n planted"
                         android:layout_gravity="center"
                         android:textAlignment="center"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/helvetica_bold"
                         />
 
 
@@ -111,13 +114,13 @@
                         android:id="@+id/completedchallenges"
                         android:text="21"
                         android:layout_gravity="center"
-                        android:fontFamily="sans-serif-black"
+                        android:fontFamily="@font/helvetica"
                         android:textSize="20sp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Daily challenges\n completed"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/helvetica_bold"
                         android:textAlignment="center"
                         android:id="@+id/challangetext"
                         />
@@ -141,14 +144,14 @@
                         android:id="@+id/reducedcarbon"
                         android:text="78Kg"
                         android:layout_gravity="center"
-                        android:fontFamily="sans-serif-black"
+                        android:fontFamily="@font/helvetica"
                         android:textSize="20sp"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Total carbon\n reduced"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/helvetica_bold"
                         android:textAlignment="center"/>
                 </LinearLayout>
 
@@ -168,7 +171,7 @@
                         android:id="@+id/position"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/helvetica_bold"
                         android:text="Top 3"
                         android:textAlignment="center" />
                 </LinearLayout>
@@ -197,6 +200,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/helvetica"
                     android:text="50%"/>
 
                 <TextView
@@ -204,7 +208,7 @@
                     android:layout_height="wrap_content"
                     android:text="Carbon offset"
                     android:gravity="center"
-                    android:fontFamily="sans-serif"/>
+                    android:fontFamily="@font/helvetica_bold"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -228,7 +232,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/credittext"
                     android:text="Cartor credits"
-                    android:fontFamily="sans-serif-black"
+                    android:fontFamily="@font/helvetica_bold"
                     android:textSize="20sp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
@@ -241,15 +245,15 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/carboncredits"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-black"
-                    android:text="3540"
-                    android:textSize="30sp"
+                    android:id="@+id/carboncreditsComm"
+                    android:layout_width="138dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/helvetica"
+                    android:text="3540"
                     android:textAlignment="center"
-                    android:layout_weight="1"/>
+                    android:textSize="30sp" />
             </LinearLayout>
 
 
@@ -263,7 +267,7 @@
             android:padding="10dp"
             android:layout_marginTop="5dp"
             android:weightSum="2"
-            android:background="@drawable/summary_border"
+            android:background="@drawable/border"
             android:backgroundTint="#D3D3D3"
             >
 
@@ -277,14 +281,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="432"
-                        android:fontFamily="sans-serif-black"
+                        android:fontFamily="@font/helvetica"
                         android:layout_gravity="center"
                         android:textSize="25sp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Trees Planted"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/helvetica_bold"
                         android:layout_gravity="center"/>
             </LinearLayout>
 
@@ -303,7 +307,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/carbonemitted"
                         android:text="1280 Kg"
-                        android:fontFamily="sans-serif-black"
+                        android:fontFamily="@font/helvetica"
                         android:layout_gravity="center"
                         android:textSize="25dp"/>
 
@@ -311,24 +315,26 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="CO2 emitted"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/helvetica_bold"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="20dp"
         android:layout_weight="2"
+        android:background="@drawable/border"
+        android:backgroundTint="#D3D3D3"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Leaderboard"
-            android:fontFamily="sans-serif-black"
+            android:fontFamily="@font/helvetica_bold"
             android:textSize="20sp"
             android:layout_marginLeft="20dp"/>
 

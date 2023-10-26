@@ -39,7 +39,7 @@
         android:layout_centerHorizontal="true"
         android:progressDrawable="@drawable/circular_progress_bar"
         android:textAlignment="center"
-        android:max="24"
+        android:max="10"
         android:progress="2"
         android:layout_gravity="center"
         />
@@ -51,34 +51,63 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/screenTimeProgressBar"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/budgetCo2e"
+        android:text="Budget: 10g"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/ScreenTimeCarbonEmissions"/>
+
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/lineChart"
         android:layout_width="match_parent"
-        android:layout_below="@id/ScreenTimeCarbonEmissions"
+        android:layout_below="@id/budgetCo2e"
         android:layout_height="200dp"
         android:layout_weight="1"
         android:background="@color/black" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/creditlayout"
+        android:padding="5dp"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal"
-        android:layout_below="@id/lineChart">
-        <TextView
+        android:layout_below="@id/lineChart"
+        android:weightSum="2"
+        android:background="@drawable/border"
+        android:backgroundTint="#D3D3D3">
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/CartorCreditsText"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/helvetica_bold"
-            android:text="Cartor Credits:"/>
-        <TextView
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/credittext"
+                android:text="Cartor credits"
+                android:fontFamily="@font/helvetica_bold"
+                android:textSize="20sp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/CartorCreditsDash"
-            android:gravity="clip_horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-        />
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/carboncredits"
+                android:layout_width="138dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/helvetica"
+                android:text="3540"
+                android:textAlignment="center"
+                android:textSize="30sp" />
+        </LinearLayout>
     </LinearLayout>
-    
 </RelativeLayout>

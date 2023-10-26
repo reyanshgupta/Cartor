@@ -6,11 +6,14 @@
         <item name="android:colorBackground">@android:color/white</item> <!-- Set background color to white -->
         <item name="android:colorPrimary">@android:color/white</item> <!-- Set primary color to white -->
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/black</item>
         <item name="buttonStyle">@style/BlackButton</item>
     </style>
     <style name="BlackButton" parent="Widget.AppCompat.Button">
         <item name="android:background">@drawable/rounded_button</item> <!-- Use the rounded button background drawable -->
         <item name="android:textColor">@android:color/white</item> <!-- Set text color to white -->
+        <item name="android:fontFamily">@font/helvetica_bold</item>
+        <item name="android:textAllCaps">false</item>
     </style>
     <drawable name="black_button_background">#FF000000</drawable>
 
