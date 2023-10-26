@@ -48,7 +48,7 @@ public class HelperClass {
         return treeplanted;
     }
 
-    public void setTreeplanted(int treeplanted){
+    public void setTreePlanted(int treeplanted){
         this.treeplanted = treeplanted;
     }
 

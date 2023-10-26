@@ -4,12 +4,16 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -19,7 +23,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +37,7 @@ import com.google.firebase.database.ValueEventListener;
 public class CommunityFragment extends Fragment {
 
     private TextView username, name, carboncredits, treesplanted, carbonemitted;
+    private RecyclerView leaderboardlist;
 
     private DatabaseReference usersRef;
 
@@ -92,6 +101,8 @@ public class CommunityFragment extends Fragment {
         carboncredits = view.findViewById(R.id.carboncredits);
         treesplanted = view.findViewById(R.id.treesplanted);
         carbonemitted = view.findViewById(R.id.carbonemitted);
+        leaderboardlist = view.findViewById(R.id.leaderboardlist);
+
 
 
         if(currentUser != null){
@@ -119,13 +130,37 @@ public class CommunityFragment extends Fragment {
                     }
                 }
 
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
                 }
             });
         }
+
+        Query leaderboardQuery = usersRef.orderByChild("treeplanted").limitToLast(10);
+
+        leaderboardQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<HelperClass> leaderboard = new ArrayList<>();
+
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                    HelperClass user = userSnapshot.getValue(HelperClass.class);
+                    leaderboard.add(user);
+                }
+
+                LeaderboardAdapter adapter = new LeaderboardAdapter(leaderboard);
+                leaderboardlist.setLayoutManager(new LinearLayoutManager(getContext()));
+                leaderboardlist.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                
+                Log.e("Leaderboard", "Error reading data from the database: " + databaseError.getMessage());
+            }
+        });
+
 
         return view;
     }
