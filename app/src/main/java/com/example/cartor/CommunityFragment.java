@@ -98,7 +98,7 @@ public class CommunityFragment extends Fragment {
 
         username = view.findViewById(R.id.username);
         name = view.findViewById(R.id.name);
-        carboncredits = view.findViewById(R.id.carboncredits);
+        carboncredits = view.findViewById(R.id.carboncreditsComm);
         treesplanted = view.findViewById(R.id.treesplanted);
         carbonemitted = view.findViewById(R.id.carbonemitted);
         leaderboardlist = view.findViewById(R.id.leaderboardlist);

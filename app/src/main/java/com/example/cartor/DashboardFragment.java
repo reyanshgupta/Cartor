@@ -110,12 +110,13 @@ public class DashboardFragment extends Fragment {
 
         ProgressBar screenTimeProgressBar = view.findViewById(R.id.screenTimeProgressBar);
 
-        screenTimeProgressBar.setProgress((int) hours);
-        screenTimeProgressBar.setSecondaryProgress((int) (hours + minutes / 60.0 * 100));
         long screenTimeMillis = (hours * 60 + minutes) * 60 * 1000; // Convert hours and minutes to milliseconds
         double carbonEmissionsGrams = calculateCarbonEmissions(screenTimeMillis);
         TextView screenTimeCarbonEmissions = view.findViewById(R.id.ScreenTimeCarbonEmissions);
         screenTimeCarbonEmissions.setText(String.format("%.2f g", carbonEmissionsGrams));
+
+        int progress = (int) Math.round(carbonEmissionsGrams);
+        screenTimeProgressBar.setProgress(progress);
         LineChart lineChart = view.findViewById(R.id.lineChart);
 
         List<String> daysOfWeek = new ArrayList<>();
@@ -161,7 +162,7 @@ public class DashboardFragment extends Fragment {
         lineChart.getLegend().setEnabled(false);
         lineChart.invalidate();
 
-        TextView cartorCreditsTextView = view.findViewById(R.id.CartorCreditsDash);
+        TextView cartorCreditsTextView = view.findViewById(R.id.credittext);
         return view;
     }
 
@@ -182,7 +183,7 @@ public class DashboardFragment extends Fragment {
                         Integer CarbonEmitted = dataSnapshot.child("carbonemitted").getValue(Integer.class);
 
                         if (cartorCredits != null) {
-                            TextView cartorCreditsTextView = view.findViewById(R.id.CartorCreditsDash);
+                            TextView cartorCreditsTextView = view.findViewById(R.id.carboncredits);
                             cartorCreditsTextView.setText("Cartor Credits: " + cartorCredits);
                         }
 
