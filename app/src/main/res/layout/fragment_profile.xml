@@ -114,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="start"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/CartorCreditsProfileText"
@@ -122,7 +122,9 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/helvetica_bold"
                 android:text="Cartor Credits:"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:textAlignment="center"/>
 
             <TextView
                 android:id="@+id/CartorCreditsProfile"
@@ -130,8 +132,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/helvetica_bold"
-                android:text=" - "
-                android:textSize="16sp" />
+                android:text="123"
+                android:textSize="16sp"
+                android:layout_gravity="center"/>
         </LinearLayout>
 
         <LinearLayout
@@ -269,6 +272,14 @@
                 android:gravity="end"
                 android:id="@+id/callemission"/>
         </LinearLayout>
+
     </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/logout"
+        android:text="Logout"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"/>
 
 </LinearLayout>

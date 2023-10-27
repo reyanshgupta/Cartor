@@ -1,14 +1,19 @@
 package com.example.cartor;
 
+import static android.system.Os.close;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -141,6 +146,17 @@ public class ProfileFragment extends Fragment {
                 }
             });
         }
+
+        Button logout = view.findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Button logout = view.findViewById(R.id.logout);
+                        firebaseAuth.signOut();
+
+                        startActivity(new Intent(getContext(), MainActivity.class));
+            }
+        });
 
         return view;
     }

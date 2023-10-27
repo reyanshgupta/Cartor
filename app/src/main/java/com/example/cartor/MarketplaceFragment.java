@@ -3,6 +3,7 @@ package com.example.cartor;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -11,6 +12,14 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +32,9 @@ import java.util.Map;
  * create an instance of this fragment.
  */
 public class MarketplaceFragment extends Fragment {
+
+    private DatabaseReference usersRef;
+    private TextView carboncredits;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -88,6 +100,33 @@ public class MarketplaceFragment extends Fragment {
             int[] to = {R.id.tv, R.id.iv};
             SimpleAdapter simpleAdapter = new SimpleAdapter(getContext(), itemList, R.layout.coupon_layout, from, to);
             listView.setAdapter(simpleAdapter);
+        }
+
+        carboncredits = view.findViewById(R.id.carboncredits);
+
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        usersRef = database.getReference("users");
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+            DatabaseReference userNode = usersRef.child(uid);
+            userNode.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        Integer credits = dataSnapshot.child("credits").getValue(Integer.class);
+
+                        carboncredits.setText(String.valueOf(credits));
+                    }
+                }
+
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // Handle any errors here
+                }
+            });
         }
         return view;
     }

@@ -45,6 +45,8 @@ import java.util.List;
 public class DashboardFragment extends Fragment {
     public static final double varEmission = 0;
 
+    private DatabaseReference usersRef;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -97,6 +99,7 @@ public class DashboardFragment extends Fragment {
         totalScreenTimeTextView = view.findViewById(R.id.totalScreenTime);
         Typeface customTypeface = ResourcesCompat.getFont(requireContext(), R.font.helvetica);
 
+        fetchCartorCreditsFromFirebase(view);
         if (hasUsageStatsPermission()) {
             Pair<Long, Long> screenTimePair = calculateScreenTime();
             displayScreenTime(screenTimePair);
@@ -170,7 +173,7 @@ public class DashboardFragment extends Fragment {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference usersRef = database.getReference("users");
+        usersRef = database.getReference("users");
 
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -184,7 +187,7 @@ public class DashboardFragment extends Fragment {
 
 
                         TextView cartorCreditsTextView = view.findViewById(R.id.carboncredits);
-                        cartorCreditsTextView.setText("Cartor Credits: " + cartorCredits);
+                        cartorCreditsTextView.setText(String.valueOf(cartorCredits));
 
 
                         if(CarbonEmitted != null){
