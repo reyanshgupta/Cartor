@@ -1,0 +1,37 @@
+# Cartor
+
+## Overview
+Cartor is a groundbreaking project developed by [Qubitech Corp](qubitechcorp.com) to empower individuals and businesses to make a meaningful impact on climate change. Our platform focuses on tracking and reducing the often-overlooked digital carbon footprint.
+
+## Key Features
+
+- **Digital Carbon Footprint Tracking**: Easily measure your digital carbon impact and gain insights into your environmental contribution.
+
+- **Behavioral Change**: Make simple adjustments to your digital habits to reduce your carbon emissions.
+
+- **Global Impact**: Join a global movement to combat climate change, one digital step at a time.
+
+- **Technology-Driven**: Our platform leverages cutting-edge technology to make sustainability accessible through your devices.
+
+## Why It Matters
+
+In an increasingly digitized world, our digital actions have a significant impact on the environment. By focusing on the digital carbon footprint, we address a vital aspect of sustainability often hidden from view.
+
+## Getting Started
+
+1. Clone the repository.
+2. Install the required dependencies.
+3. Run the application.
+4. Sign up and start tracking your digital carbon footprint!
+
+## How to Contribute
+
+We welcome contributions from the community to help make this project even more impactful. Feel free to:
+
+- Submit bug reports.
+- Propose new features.
+- Improve the documentation.
+
+## Contact
+
+For questions or feedback, contact our team at [qubitechcorp@gmail.com](mailto:qubitechcorp@gmail.com).
