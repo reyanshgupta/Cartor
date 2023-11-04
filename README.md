@@ -17,13 +17,6 @@ Cartor is a groundbreaking project developed by [Qubitech Corp](qubitechcorp.com
 
 In an increasingly digitized world, our digital actions have a significant impact on the environment. By focusing on the digital carbon footprint, we address a vital aspect of sustainability often hidden from view.
 
-## Getting Started
-
-1. Clone the repository.
-2. Install the required dependencies.
-3. Run the application.
-4. Sign up and start tracking your digital carbon footprint!
-
 ## How to Contribute
 
 We welcome contributions from the community to help make this project even more impactful. Feel free to:
