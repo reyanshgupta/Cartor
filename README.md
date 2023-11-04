@@ -3,6 +3,12 @@
 ## Overview
 Cartor is a groundbreaking project developed by [Qubitech Corp](qubitechcorp.com) to empower individuals and businesses to make a meaningful impact on climate change. Our platform focuses on tracking and reducing the often-overlooked digital carbon footprint.
 
+## Table of Contents
+- [Key Features] (#KeyFeatures)
+- [Why it Matters?] (#Whyitmatters)
+- [How to Contribute] (#howtocontribute)
+- [Contact] (#contact)
+
 ## Key Features
 
 - **Digital Carbon Footprint Tracking**: Easily measure your digital carbon impact and gain insights into your environmental contribution.
