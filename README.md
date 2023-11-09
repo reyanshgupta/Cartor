@@ -1,7 +1,7 @@
 # Cartor
 
 ## Overview
-Cartor is a groundbreaking project developed by [Qubitech Corp](qubitechcorp.com) to empower individuals and businesses to make a meaningful impact on climate change. Our platform focuses on tracking and reducing the often-overlooked digital carbon footprint.
+Cartor is a groundbreaking project developed by [Qubitech Corp](www.qubitechcorp.com) to empower individuals and businesses to make a meaningful impact on climate change. Our platform focuses on tracking and reducing the often-overlooked digital carbon footprint.
 
 ## Table of Contents
 - [Key Features](#key-features)
